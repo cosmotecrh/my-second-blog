@@ -1089,17 +1089,24 @@ def PDI2(request, name):
             AA1+='\n'
             AA1+=AA2[2]
             AA1+='\n'
-            
-            smtpobj = smtplib.SMTP('smtp.gmail.com', 587)
-            smtpobj.starttls()
-            smtpobj.login('cosmotecrh2022@gmail.com', 'ixvhkhiktxmcdpiu')
-            msg = MIMEText(AA1)
+
             BBB='PDI 2022 de '
             BBB+=colaborador
-            msg['Subject'] = BBB
-            msg['To'] = 'sistema.rh@cosmotec.com.br'
-            smtpobj.send_message(msg)
-            smtpobj.close()
+            subject = BBB
+            message = AA1
+            recipient_list = ['sistema.rh@cosmotec.com.br']
+            send_mail(subject, message, from_email, recipient_list)
+
+            #smtpobj = smtplib.SMTP('smtp.gmail.com', 587)
+            #smtpobj.starttls()
+            #smtpobj.login('cosmotecrh2022@gmail.com', 'ixvhkhiktxmcdpiu')
+            #msg = MIMEText(AA1)
+            #BBB='PDI 2022 de '
+            #BBB+=colaborador
+            #msg['Subject'] = BBB
+            #msg['To'] = 'sistema.rh@cosmotec.com.br'
+            #smtpobj.send_message(msg)
+            #smtpobj.close()
 
 
         elif "deny" in request.POST:
