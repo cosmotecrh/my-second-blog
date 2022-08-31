@@ -7,8 +7,8 @@
 <title></title>
 </head>
     <body class="content">  
-        <form action="{% url 'Logout' %}" method="post">
-            <p class="medium">MBO2022 de <font color="blue">{{UserID}}</font> / avaliador : <font color="blue">{{data7}}</font></p>
+        <form action="{% url 'xLogout' %}" method="post">
+            <p class="medium">MBO2023 de <font color="blue">{{UserID}}</font> / avaliador : <font color="blue">{{data7}}</font></p>
             {% csrf_token %}
             <table border="1" cellspacing="0">
                 <tr style="background-color: #F0F8FF">
@@ -78,7 +78,7 @@
             </table>
             {% if time == 1 %}  
                 <font size="2" color="red">Clique Edit e defina sua meta e peso%, e depois clique "submeter para avaliador"</font>
-                <br><td><a href="{% url 'edit' user.id %}"><font size="2">Edit</font></a></td>
+                <br><td><a href="{% url 'xedit' user.id %}"><font size="2">Edit</font></a></td>
                 <br><tr><th><td>
                     <input type="submit" value="baixar" name="DL" class="button2">
                     <input type="submit" value="submeter para avaliador" name="send" class="button">
@@ -86,7 +86,7 @@
             {% endif %}
             {% if time == 2 %}
             <font size="2" color="red">Clique Edit e inputa primeiro alinhamento, e depois clique "submeter para avaliador"</font>
-            <br><td><a href="{% url 'edit2' user.id %}"><font size="2">Edit</font></a></td>
+            <br><td><a href="{% url 'xedit2' user.id %}"><font size="2">Edit</font></a></td>
                 <br><tr><th><td>
                     <input type="submit" value="baixar" name="DL" class="button2">
                     <input type="submit" value="submeter para avaliador" name="send" class="button">
@@ -94,7 +94,7 @@
             {% endif %}
             {% if time == 3 %}
             <font size="2" color="red">Clique Edit e inputa segundo alinhamento, e depois clique "submeter para avaliador"</font>
-                <br><td><a href="{% url 'edit3' user.id %}"><font size="2">Edit</font></a></td>
+                <br><td><a href="{% url 'xedit3' user.id %}"><font size="2">Edit</font></a></td>
                 <br><tr><th><td>
                     <input type="submit" value="baixar" name="DL" class="button2">
                     <input type="submit" value="submeter para avaliador" name="send" class="button">
@@ -102,7 +102,7 @@
             {% endif %}
             {% if time == 4 %}
             <font size="2" color="red">Clique Edit e inputa avaliação e pontuação combinados com seu/sua avaliador/a segundo alinhamento, e depois clique "submeter para avaliador"</font>
-            <br><td><a href="{% url 'edit4' user.id %}"><font size="2">Edit</font></a></td>
+            <br><td><a href="{% url 'xedit4' user.id %}"><font size="2">Edit</font></a></td>
                 <br><tr><th><td>
                     <input type="submit" value="baixar" name="DL" class="button2">
                     <input type="submit" value="submeter para avaliador" name="send" class="button">
@@ -114,19 +114,19 @@
                 <input type="submit" value="baixar" name="DL" class="button2">
             </td></th></tr>      
             {% endif %}
-            {% if time == 5 %}  
-                <font color = "red" size="2">peso total não é 100%, clique EDIT e adjuste</font>
-                <br><td><a href="{% url 'edit' user.id %}"><font size="2">Edit</font></a></td>
-                <br><tr><th><td>
-                    <input type="submit" value="baixar" name="DL" class="button2">
-                    <input type="submit" value="submeter para avaliador" name="send" class="button">
-                </td></th></tr>   
-            {% endif %}
-            {% if time == 10 %}
+            {% if time == 20 %}
             <font size="2">encerrado</font>
             <br><tr><th><td>
                 <input type="submit" value="baixar" name="DL" class="button2">
             </td></th></tr>      
+            {% endif %}
+            {% if time == 5 %}  
+                <font color = "red" size="2">peso total não é 100%, clique EDIT e adjuste</font>
+                <br><td><a href="{% url 'xedit' user.id %}"><font size="2">Edit</font></a></td>
+                <br><tr><th><td>
+                    <input type="submit" value="baixar" name="DL" class="button2">
+                    <input type="submit" value="submeter para avaliador" name="send" class="button">
+                </td></th></tr>   
             {% endif %}
             <br><td><a href="{% url 'home' %}"><font size="2"> volta para home</font></a></td>
         </form>

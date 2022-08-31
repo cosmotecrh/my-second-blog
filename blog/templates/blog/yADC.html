@@ -12,7 +12,7 @@
 
     <body class="content">  
         <p class="medium">avaliação de competencia de <font color="blue">{{UserID}}</font> / avaliador : <font color="blue">{{avaliador}}</font></p>
-        <form action="{% url 'ADC' %}" method="post">
+        <form action="{% url 'yADC' %}" method="post">
         {% csrf_token %}
             <table border="1" >
                 <tr style="background-color: #F0F8FF">
@@ -97,7 +97,7 @@
             </table>
             {% if time == 0 %}
                 <font size="2" color="red">Clique Edit e faça auto avaliação e sua observação, e depois clique "submeter para avaliador/a"</font>
-                <br><font size="2"><a href="{% url 'editADC' user.id %}">Edit</font></a>
+                <br><font size="2"><a href="{% url 'yeditADC' user.id %}">Edit</font></a>
                 <br><tr><th><td>
                     <input type="submit" value="baixar" name="DL" class="button2">
                     <input type="submit" value="submeter para avaliador" name="send" class="button">
@@ -108,13 +108,7 @@
                 <br><tr><th><td>
                     <input type="submit" value="baixar" name="DL" class="button2">
                 </td></th></tr>   
-            {% endif %}
-            {% if time == 10 %}
-                <td><font size="2" color="red">encerrado</font></td>
-                <br><tr><th><td>
-                    <input type="submit" value="baixar" name="DL" class="button2">
-                </td></th></tr>   
-            {% endif %}
+                {% endif %}
             <br><font size="2"><a href="{% url 'home' %}">volta para home</font></a>
         </form>
     </body>

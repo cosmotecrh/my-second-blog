@@ -8,7 +8,7 @@
 </head>
     <body class="content"> 
     {% if reject == 0 %} 
-        <form action="{% url 'ADC2' name=avaliado %}" method="post">
+        <form action="{% url 'xADC2' name=avaliado %}" method="post">
         {% csrf_token %}
         <tr class="small">avaliação de competencia de <font color="blue">{{avaliado}}</font></tr>
         <table border="1" >
@@ -94,7 +94,7 @@
         </table>
         {% if time == 1 %}
             <tr class="small"><font color="red">{{UserID}}</font>, clique "Edit" e preencha sua avaliação e observação de {{avaliado}} e aprove</tr>
-            <br><font size="2"><a href="{% url 'editADC2' name=avaliado %}">Edit</font></a>
+            <br><font size="2"><a href="{% url 'xeditADC2' name=avaliado %}">Edit</font></a>
             <br><tr><th><td>
                 <input type="submit" value="baixar" name="DL" class="button2">
                 <input type="submit" value="aprovar" name="send" class="button">

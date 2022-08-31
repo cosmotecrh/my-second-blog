@@ -7,8 +7,14 @@
 
 </head>
 <body>
+    <form action="{% url 'MBO22DL' %}" method="post">
     <h1><font color="red">MBO 2022 deadline control</h1>
     <h5><td><a href="{% url 'RH' %}">volta para sala RH</a></td></h5>
+    <input type="submit" value="avisar que prazo de define meta e peso já passou" name="meta"><br><br>
+    <input type="submit" value="avisar que prazo de primeiro alinhamento já passou" name="primeiro"><br><br>
+    <input type="submit" value="avisar que prazo de segundo alinhamento já passou" name="segundo"><br><br>
+    <input type="submit" value="avisar que prazo de avaliaçao e pontuação já passou" name="final">
+    <br><br>
     {% csrf_token %}
     <table border="1">
         <tr bgcolor = "cccccc">
@@ -141,7 +147,7 @@
             </td>
         </tr>
     </table>
-
+    </form>
 
 </body>
 </html>

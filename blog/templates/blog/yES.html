@@ -1,0 +1,47 @@
+{% load static %}
+<html lang="ja" dir="ltr">
+<head>
+<meta charset="utf-8">
+<title></title>
+<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+
+</head>
+<body>
+    <h1><font color="red">all employee status</font></h1>
+
+    <h5><td><a href="{% url 'RH' %}">volta para sala RH</a></td></h5>
+
+
+{% csrf_token %}
+<table border="1" cellspacing="0">
+    <tr style="background-color: #F0F8FF">
+        <td><font size="1"> </font></td>
+        <td><font size="1">colaborador</font></td>
+        <td><font size="1">departamento</font></td>
+        <td><font size="1">avaliador</font></td>
+        <td><font size="1">check</font></td>
+        <td><font size="1">competencia especifica 1</font></td>
+        <td><font size="1">check</font></td>
+        <td><font size="1">competencia especifica 2</font></td>
+        <td><font size="1">check</font></td>
+        <td><font size="1">MBO24-1st</font></td>
+        <td><font size="1">MBO24-2nd</font></td>
+        <td><font size="1">MBO24-3rd</font></td>
+        <td><font size="1">MBO24-4th</font></td>
+        <td><font size="1">ADC24</font></td>
+        <td><font size="1">PDI24</font></td>
+    </tr>
+    {% for i in time %}
+        {% if i == '#' %}
+        <tr><td  style="height:1px;"><font size="1"> </font></td>
+        {% else %}
+            {% if i == "não" %}
+                <td><font size="1" color="red">{{i}}</font></td>
+            {% else %}
+                <td><font size="1">{{i}}</font></td>
+            {% endif %}
+        {% endif %}
+    {% endfor %}
+</table>
+</body>
+</html>

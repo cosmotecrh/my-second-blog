@@ -1,0 +1,86 @@
+{% load static %}
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>{{title}}</title>
+    <link rel="stylesheet" 
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+</head>
+<body class="content">
+    <p class="small"><font size="2" color="blue">{{UserID}}</font>, faça avaliação e pontuação (minimo 0 maximo 100 para cada) com seu/sua avaliador/a de cada meta e preencha. <font color="red">ALERTA:</font> clique "salvar/voltar" senão o sistema não salva sua alteração</p>
+    <form action="{% url 'xedit4' user.id %}" method="post">
+    {% csrf_token %}
+        <table border="1">
+            <tr style="background-color: #F0F8FF">
+                <td style="width: 290px;"><font size="1"<center>descrição de metas</center></font></td>
+                <td><font size="1"><center>peso %</center></font></td>
+                <td style="width: 290px;"><font size="1"><center>primeiro alinhamento</center></font></td>
+                <td style="width: 290px;"><font size="1"><center>segundo alinhamento</center></font></td>
+                <td style="width: 290px;"><font size="1" color="red"><center>avaliação de fim do ano</center></font></td>
+                <td><font size="1" color="red"><center>pontuação</center></font></td>
+            </tr>
+            <tr>
+                <td><font size="1">{{data1.0}}</font></td>
+                <td><font size="1">{% if data2.0 != 0 %}{{data2.0}}{% endif %}</font></td>
+                <td><font size="1">{{data3.0}}</font></td>
+                <td><font size="1">{{data4.0}}</font></td>
+                <td>{{data5.MBO23A4}}</td>
+                <td>{{data5.MBO23AR}}</td>
+            </tr>
+            <tr>
+                <td><font size="1">{{data1.1}}</font></td>
+                <td><font size="1">{% if data2.1 != 0 %}{{data2.1}}{% endif %}</font></td>
+                <td><font size="1">{{data3.1}}</font></td>
+                <td><font size="1">{{data4.1}}</font></td>
+                <td>{{data5.MBO23B4}}</td>
+                <td>{{data5.MBO23BR}}</td>
+            </tr>
+            <tr>
+                <td><font size="1">{{data1.2}}</font></td>
+                <td><font size="1">{% if data2.2 != 0 %}{{data2.2}}{% endif %}</font></td>
+                <td><font size="1">{{data3.2}}</font></td>
+                <td><font size="1">{{data4.2}}</font></td>
+                <td>{{data5.MBO23C4}}</td>
+                <td>{{data5.MBO23CR}}</td>
+            </tr>
+            <tr>
+                <td><font size="1">{{data1.3}}</font></td>
+                <td><font size="1">{% if data2.3 != 0 %}{{data2.3}}{% endif %}</font></td>
+                <td><font size="1">{{data3.3}}</font></td>
+                <td><font size="1">{{data4.3}}</font></td>
+                <td>{{data5.MBO23D4}}</td>
+                <td>{{data5.MBO23DR}}</td>
+            </tr>
+            <tr>
+                <td><font size="1">{{data1.4}}</font></td>
+                <td><font size="1">{% if data2.4 != 0 %}{{data2.4}}{% endif %}</font></td>
+                <td><font size="1">{{data3.4}}</font></td>
+                <td><font size="1">{{data4.4}}</font></td>
+                <td>{{data5.MBO23E4}}</td>
+                <td>{{data5.MBO23ER}}</td>
+            </tr>
+            <tr>
+                <td><font size="1">{{data1.5}}</font></td>
+                <td><font size="1">{% if data2.5 != 0 %}{{data2.5}}{% endif %}</font></td>
+                <td><font size="1">{{data3.5}}</font></td>
+                <td><font size="1">{{data4.5}}</font></td>
+                <td>{{data5.MBO23F4}}</td>
+                <td>{{data5.MBO23FR}}</td>
+            </tr>
+            <tr>
+                <td><font size="1">{{data1.6}}</font></td>
+                <td><font size="1">{% if data2.6 != 0 %}{{data2.6}}{% endif %}</font></td>
+                <td><font size="1">{{data3.6}}</font></td>
+                <td><font size="1">{{data4.6}}</font></td>
+                <td>{{data5.MBO23G4}}</td>
+                <td>{{data5.MBO23GR}}</td>
+            </tr>
+        </table>
+        <tr><th><td><br>
+            <input type="submit" value="salvar/voltar" class="button3">
+        </td></th></tr>
+    </form>
+</body>
+</html>

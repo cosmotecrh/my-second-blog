@@ -1,0 +1,86 @@
+{% load static %}
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>{{title}}</title>
+    <link rel="stylesheet" 
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+</head>
+<body class="content">
+    <p class="medium"><font color="blue">{{UserID}}</font>, estabeleça suas metas (maximo 7) de 2024 e defina o peso%. <font color="red">ALERTA:</font>clique "salvar/voltar" em baixo senão o sistema não salva sua alteração</p>
+    <form action="{% url 'yedit' user.id %}" method="post">
+    {% csrf_token %}
+        <table border="1">
+            <tr style="background-color: #F0F8FF">
+                <td style="width: 290px;"><font size="1" color="red"><center>descrição de metas</center></font></td>
+                <td><font size="1" color="red"><center>peso %</center></font></td>
+                <td style="width: 290px;"><font size="1"><center>primeiro alinhamento</center></font></td>
+                <td style="width: 290px;"><font size="1"><center>segundo alinhamento</center></font></td>
+                <td style="width: 290px;"><font size="1"><center>avaliação de fim do ano</center></font></td>
+                <td><font size="1"><center>pontuação</center></font></td>
+            </tr>
+            <tr>
+                <td>{{data1.MBO24A1}}</td>
+                <td>{{data1.MBO24AP}}</td>
+                <td><font size="1"></font></td>
+                <td><font size="1"></font></td>
+                <td><font size="1"></font></td>
+                <td><font size="1"></font></td>
+            </tr>
+            <tr>
+                <td>{{data1.MBO24B1}}</td>
+                <td>{{data1.MBO24BP}}</td>
+                <td><font size="1"></font></td>
+                <td><font size="1"></font></td>
+                <td><font size="1"></font></td>
+                <td><font size="1"></font></td>
+            </tr>
+            <tr>
+                <td>{{data1.MBO24C1}}</td>
+                <td>{{data1.MBO24CP}}</td>
+                <td><font size="1"></font></td>
+                <td><font size="1"></font></td>
+                <td><font size="1"></font></td>
+                <td><font size="1"></font></td>
+            </tr>
+            <tr>
+                <td>{{data1.MBO24D1}}</td>
+                <td>{{data1.MBO24DP}}</td>
+                <td><font size="1"></font></td>
+                <td><font size="1"></font></td>
+                <td><font size="1"></font></td>
+                <td><font size="1"></font></td>
+            </tr>
+            <tr>
+                <td>{{data1.MBO24E1}}</td>
+                <td>{{data1.MBO24EP}}</td>
+                <td><font size="1"></font></td>
+                <td><font size="1"></font></td>
+                <td><font size="1"></font></td>
+                <td><font size="1"></font></td>
+            </tr>
+            <tr>
+                <td>{{data1.MBO24F1}}</td>
+                <td>{{data1.MBO24FP}}</td>
+                <td><font size="1"></font></td>
+                <td><font size="1"></font></td>
+                <td><font size="1"></font></td>
+                <td><font size="1"></font></td>
+            </tr>
+            <tr>
+                <td>{{data1.MBO24G1}}</td>
+                <td>{{data1.MBO24GP}}</td>
+                <td><font size="1"></font></td>
+                <td><font size="1"></font></td>
+                <td><font size="1"></font></td>
+                <td><font size="1"></font></td>
+            </tr>
+        </table>
+        <tr><th><td><br>
+            <input type="submit" value="salvar/voltar" class="button3">
+        </td></th></tr>
+    </form>
+</body>
+</html>

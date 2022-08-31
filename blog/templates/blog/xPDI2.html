@@ -10,9 +10,9 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
 </head>
 <body class="container">  
 {% if reject == 0 %}
-    <form action="{% url 'PDI2' name=avaliado %}" method="post">
+    <form action="{% url 'xPDI2' name=avaliado %}" method="post">
     {% csrf_token %}
-    <tr class="medium">PDI 2022 de <font color="blue">{{avaliado}}</font></tr>
+    <tr class="medium">PDI 2023 de <font color="blue">{{avaliado}}</font></tr>
     <table border="1" >
         <tr style="background-color: #F0F8FF">
             <td style="width: 200px;"><font size="1">competencia geral</font></td>
@@ -84,7 +84,7 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
             <input type="submit" value="baixar" name="DL" class="button2">
         </td></th></tr>   
     {% endif %}
-    {% if time == 20 %}
+    {% if time == 10 %}
         <tr><font size="2" color="red">encerrado</font></tr>
         <br><tr><th><td>
             <input type="submit" value="baixar" name="DL" class="button2">

@@ -1,0 +1,74 @@
+{% load static %}
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <title>{{title}}</title>
+    <link rel="stylesheet" 
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/blog.css' %}">
+</head>
+<body class="content">
+    <p class="small">Selecione foco de competencia geral (min 2, max 3) e preencha ponto a desenvolver e PDI combinado com seu avaliador para cada competencia. <font color="red">ALERTA:</font> clique "salvar/voltar" senão o sistema não salva sua alteração</p>
+    <form action="{% url 'xeditPDI' user.id %}" method="post">
+        {% csrf_token %}
+        <table border="1">
+            <tr style="background-color: #F0F8FF">
+                <td style="width: 200px;"><font size="1" color="red">competencia geral</font></td>
+                <td style="width: 100px;"><font size="1">auto avaliação</font></td>
+                <td style="width: 100px;"><font size="1">avaliação por avaliador/a</font></td>
+                <td style="width: 400px;"><font size="1" color="red">ponto a desenvolver</font></td>
+                <td style="width: 400px; height:10px"><font size="1" color="red">PDI(Plano de Devenvolvimento Individual)</font></td>
+            </tr>
+            <tr>
+                <td><font size="1">{{form1.PDI23G1C}}</font></td>
+                <td><font size="1">{{G1C}}</font></td>
+                <td><font size="1">{{G1A}}</font></td>
+                <td><font size="1">{{form1.PDI23G1PD}}</font></td>
+                <td><font size="1">{{form1.PDI23G1}}</font></td>
+            </tr>
+            <tr>
+                <td><font size="1">{{form1.PDI23G2C}}</font></td>
+                <td><font size="1">{{G2C}}</font></td>
+                <td><font size="1">{{G2A}}</font></td>
+                <td><font size="1">{{form1.PDI23G2PD}}</font></td>
+                <td><font size="1">{{form1.PDI23G2}}</font></td>
+            </tr>
+            <tr>
+                <td><font size="1">{{form1.PDI23G3C}}</font></td>
+                <td><font size="1">{{G3C}}</font></td>
+                <td><font size="1">{{G3A}}</font></td>
+                <td><font size="1">{{form1.PDI23G3PD}}</font></td>
+                <td><font size="1">{{form1.PDI23G3}}</font></td>
+            </tr>
+        </table>
+        <br>
+        <table border="1">
+            <tr style="background-color: #F0F8FF">
+                <td style="width: 200px;"><font size="1" color="red">competencia especifica</font></td>
+                <td style="width: 100px;"><font size="1">auto avaliação</font></td>
+                <td style="width: 100px;"><font size="1">avaliação por avaliador/a</font></td>
+                <td style="width: 400px;"><font size="1" color="red">ponto a desenvolver</font></td>
+                <td style="width: 400px;"><font size="1" color="red">PDI(Plano de Devenvolvimento Individual)</font></td>
+            </tr>
+            <tr>
+                <td><font size="1">{{form2}}</font></td>
+                <td><font size="1">{{E1C}}</font></td>
+                <td><font size="1">{{E1A}}</font></td>
+                <td><font size="1">{{form1.PDI23E1PD}}</font></td>
+                <td><font size="1">{{form1.PDI23E1}}</font></td>
+            </tr>
+            <tr>
+                <td><font size="1">{{form3}}</font></td>
+                <td><font size="1">{{E2C}}</font></td>
+                <td><font size="1">{{E2A}}</font></td>
+                <td><font size="1">{{form1.PDI23E2PD}}</font></td>
+                <td><font size="1">{{form1.PDI23E2}}</font></td>
+            </tr>
+        </table>
+        <tr><th><td><br>
+            <input type="submit" value="salvar/voltar" class="button3">
+        </td></th></tr>
+    </form>
+</body>
+</html>

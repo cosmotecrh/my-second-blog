@@ -9,8 +9,8 @@ href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
 </head>
     <body class="content">  
     {% if reject == 0 %}
-        <p class="medium">MBO2022 de <font color="blue">{{avaliado}}</font></p>
-        <form action="{% url 'Logout2' name=avaliado %}" method="post" enctype="multipart/form-data">
+        <p class="medium">MBO2023 de <font color="blue">{{avaliado}}</font></p>
+        <form action="{% url 'xLogout2' name=avaliado %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <table border="1" cellspacing="0">
             <tr style="background-color: #F0F8FF">
