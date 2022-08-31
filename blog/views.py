@@ -1356,16 +1356,12 @@ def Logout2(request, name):
             AA1+='\n'
             AA1+=str(AA2[6])
             AA1+='\n'
-            
-            smtpobj = smtplib.SMTP('smtp.gmail.com', 587)
-            smtpobj.starttls()
-            smtpobj.login('cosmotecrh2022@gmail.com', 'ixvhkhiktxmcdpiu')
-            msg = MIMEText(AA1)
+
             BBB+=colaborador
-            msg['Subject'] = BBB
-            msg['To'] = 'sistema.rh@cosmotec.com.br'
-            smtpobj.send_message(msg)
-            smtpobj.close()
+            subject = BBB
+            message = AA1
+            recipient_list = ['sistema.rh@cosmotec.com.br']
+            send_mail(subject, message, from_email, recipient_list)
 
         elif "deny" in request.POST:
             new_status = 0
@@ -2152,18 +2148,14 @@ def ADC2(request,name):
             AA1+='\n'
             AA1+=AA2[3]
             AA1+='\n'
-            
-            smtpobj = smtplib.SMTP('smtp.gmail.com', 587)
-            smtpobj.starttls()
-            smtpobj.login('cosmotecrh2022@gmail.com', 'ixvhkhiktxmcdpiu')
-            msg = MIMEText(AA1)
+
             BBB='avaliação de competencia 2022 de '
             BBB+=colaborador
-            msg['Subject'] = BBB
-            msg['To'] = 'sistema.rh@cosmotec.com.br'
-            smtpobj.send_message(msg)
-            smtpobj.close()
-
+            subject = BBB
+            message = AA1
+            recipient_list = ['sistema.rh@cosmotec.com.br']
+            send_mail(subject, message, from_email, recipient_list)
+            
         elif "DL" in request.POST:
             output = io.BytesIO()
             book = op.Workbook(output)
@@ -9394,18 +9386,13 @@ def xPDI2(request, name):
             AA1+='\n'
             AA1+=AA2[2]
             AA1+='\n'
-            
-            smtpobj = smtplib.SMTP('smtp.gmail.com', 587)
-            smtpobj.starttls()
-            smtpobj.login('cosmotecrh2022@gmail.com', 'ixvhkhiktxmcdpiu')
-            msg = MIMEText(AA1)
+
             BBB='PDI 2023 de '
             BBB+=colaborador
-            msg['Subject'] = BBB
-            msg['To'] = 'sistema.rh@cosmotec.com.br'
-            smtpobj.send_message(msg)
-            smtpobj.close()
-
+            subject = BBB
+            message = AA1
+            recipient_list = ['sistema.rh@cosmotec.com.br']
+            send_mail(subject, message, from_email, recipient_list)          
 
         elif "deny" in request.POST:
             new_status = 0
@@ -9651,15 +9638,11 @@ def xLogout2(request, name):
             AA1+=str(AA2[6])
             AA1+='\n'
             
-            smtpobj = smtplib.SMTP('smtp.gmail.com', 587)
-            smtpobj.starttls()
-            smtpobj.login('cosmotecrh2022@gmail.com', 'ixvhkhiktxmcdpiu')
-            msg = MIMEText(AA1)
             BBB+=colaborador
-            msg['Subject'] = BBB
-            msg['To'] = 'sistema.rh@cosmotec.com.br'
-            smtpobj.send_message(msg)
-            smtpobj.close()
+            subject = BBB
+            message = AA1
+            recipient_list = ['sistema.rh@cosmotec.com.br']
+            send_mail(subject, message, from_email, recipient_list)          
 
         elif "deny" in request.POST:
             new_status = 0
@@ -10442,16 +10425,12 @@ def xADC2(request,name):
             AA1+=AA2[3]
             AA1+='\n'
             
-            smtpobj = smtplib.SMTP('smtp.gmail.com', 587)
-            smtpobj.starttls()
-            smtpobj.login('cosmotecrh2022@gmail.com', 'ixvhkhiktxmcdpiu')
-            msg = MIMEText(AA1)
             BBB='avaliação de competencia 2023 de '
             BBB+=colaborador
-            msg['Subject'] = BBB
-            msg['To'] = 'sistema.rh@cosmotec.com.br'
-            smtpobj.send_message(msg)
-            smtpobj.close()
+            subject = BBB
+            message = AA1
+            recipient_list = ['sistema.rh@cosmotec.com.br']
+            send_mail(subject, message, from_email, recipient_list)          
 
         elif "DL" in request.POST:
             output = io.BytesIO()
@@ -15855,18 +15834,13 @@ def yPDI2(request, name):
             AA1+='\n'
             AA1+=AA2[2]
             AA1+='\n'
-            
-            smtpobj = smtplib.SMTP('smtp.gmail.com', 587)
-            smtpobj.starttls()
-            smtpobj.login('cosmotecrh2022@gmail.com', 'ixvhkhiktxmcdpiu')
-            msg = MIMEText(AA1)
+
             BBB='PDI 2024 de '
             BBB+=colaborador
-            msg['Subject'] = BBB
-            msg['To'] = 'sistema.rh@cosmotec.com.br'
-            smtpobj.send_message(msg)
-            smtpobj.close()
-
+            subject = BBB
+            message = AA1
+            recipient_list = ['sistema.rh@cosmotec.com.br']
+            send_mail(subject, message, from_email, recipient_list)          
 
         elif "deny" in request.POST:
             new_status = 0
@@ -16108,16 +16082,12 @@ def yLogout2(request, name):
             AA1+='\n'
             AA1+=str(AA2[6])
             AA1+='\n'
-            
-            smtpobj = smtplib.SMTP('smtp.gmail.com', 587)
-            smtpobj.starttls()
-            smtpobj.login('cosmotecrh2022@gmail.com', 'ixvhkhiktxmcdpiu')
-            msg = MIMEText(AA1)
+
             BBB+=colaborador
-            msg['Subject'] = BBB
-            msg['To'] = 'sistema.rh@cosmotec.com.br'
-            smtpobj.send_message(msg)
-            smtpobj.close()
+            subject = BBB
+            message = AA1
+            recipient_list = ['sistema.rh@cosmotec.com.br']
+            send_mail(subject, message, from_email, recipient_list)          
 
         elif "deny" in request.POST:
             new_status = 0
@@ -16903,16 +16873,12 @@ def yADC2(request,name):
             AA1+=AA2[3]
             AA1+='\n'
             
-            smtpobj = smtplib.SMTP('smtp.gmail.com', 587)
-            smtpobj.starttls()
-            smtpobj.login('cosmotecrh2022@gmail.com', 'ixvhkhiktxmcdpiu')
-            msg = MIMEText(AA1)
             BBB='avaliação de competencia 2024 de '
             BBB+=colaborador
-            msg['Subject'] = BBB
-            msg['To'] = 'sistema.rh@cosmotec.com.br'
-            smtpobj.send_message(msg)
-            smtpobj.close()
+            subject = BBB
+            message = AA1
+            recipient_list = ['sistema.rh@cosmotec.com.br']
+            send_mail(subject, message, from_email, recipient_list)          
 
         elif "DL" in request.POST:
             output = io.BytesIO()
