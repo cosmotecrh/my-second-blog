@@ -16525,7 +16525,7 @@ def yLogout(request):
                         "data6":MBO22.objects.values_list('MBO24AR','MBO24BR','MBO24CR','MBO24DR','MBO24ER','MBO24FR','MBO24GR').get(user=request.user),
                         "data7":request.user.email,"time":time,"ptotal":ptotal
                         }
-                    return render(request, "blog/xLogout.html", context=params)
+                    return render(request, "blog/yLogout.html", context=params)
             if (time==2):
                 task = get_object_or_404(MBO22, user=request.user)
                 new_status = 1
@@ -16566,7 +16566,7 @@ def yLogout(request):
 #                from_email = 'sistema.rh@cosmotec.com.br'  # 送信
                 recipient_list = [request.user.email]  # 宛先リスト
                 send_mail(subject, message, from_email, recipient_list)
-                return render(request, "blog/xLogout.html", context=params)
+                return render(request, "blog/yLogout.html", context=params)
     
     params = {
         "UserID":request.user,
