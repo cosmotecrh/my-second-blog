@@ -3410,7 +3410,7 @@ def MBO22RH(request):
     wordcloud = WordCloud(background_color='white',stopwords={'para','a','o','e','de','do','da','em','no','na','cosmotec','por','com','br','que','os','as','é','das','dos'})
     wordcloud.generate(textdata)
 #    wordcloud.to_file('./blog/static/mbo22.png')
-    wordcloud.to_file('https://cosmotecrh.pythonanywhere.com/static/mbo22.png')
+#    wordcloud.to_file('https://cosmotecrh.pythonanywhere.com/static/mbo22.png')
     params = {"UserID":request.user,"time":AA}
     return render(request, "blog/MBO22RH.html",context=params)
 
@@ -3680,7 +3680,7 @@ def ADC22RHA(request):
     textdata=ZZ
     wordcloud = WordCloud(background_color='white',stopwords={'para','a','o','e','de','do','da','em','no','na','cosmotec','por','com','br','que','os','as','é','das','dos'})
     wordcloud.generate(textdata)
-    wordcloud.to_file('./blog/static/adc22.png')
+#    wordcloud.to_file('./blog/static/adc22.png')
     AA=AA.split('^')
     del AA[-1]
     params = {"UserID":request.user,"time":AA}
@@ -3883,7 +3883,7 @@ def PDI22RH(request):
     textdata=ZZ
     wordcloud = WordCloud(background_color='white',stopwords={'para','a','o','e','de','do','da','em','no','na','cosmotec','por','com','br','que','os','as','é','das','dos'})
     wordcloud.generate(textdata)
-    wordcloud.to_file('./blog/static/pdi22.png')
+#    wordcloud.to_file('./blog/static/pdi22.png')
     AA=AA.split('^')
     del AA[-1]
     params = {"UserID":request.user,"time":AA}
@@ -11664,7 +11664,7 @@ def xMBO22RH(request):
     AA=AA.split('^')
     wordcloud = WordCloud(background_color='white',stopwords={'para','a','o','e','de','do','da','em','no','na','cosmotec','por','com','br','que','os','as','é','das','dos'})
     wordcloud.generate(textdata)
-    wordcloud.to_file('./blog/static/mbo23.png')
+#    wordcloud.to_file('./blog/static/mbo23.png')
     del AA[-1]
     params = {"UserID":request.user,"time":AA}
     return render(request, "blog/xMBO22RH.html",context=params)
@@ -11936,7 +11936,7 @@ def xADC22RHA(request):
     textdata=ZZ
     wordcloud = WordCloud(background_color='white',stopwords={'para','a','o','e','de','do','da','em','no','na','cosmotec','por','com','br','que','os','as','é','das','dos'})
     wordcloud.generate(textdata)
-    wordcloud.to_file('./blog/static/adc23.png')
+#    wordcloud.to_file('./blog/static/adc23.png')
     del AA[-1]
     params = {"UserID":request.user,"time":AA}
     return render(request, "blog/xADC22RHA.html",context=params)
@@ -12139,7 +12139,7 @@ def xPDI22RH(request):
     textdata=ZZ
     wordcloud = WordCloud(background_color='white',stopwords={'para','a','o','e','de','do','da','em','no','na','cosmotec','por','com','br','que','os','as','é','das','dos'})
     wordcloud.generate(textdata)
-    wordcloud.to_file('./blog/static/pdi23.png')
+#    wordcloud.to_file('./blog/static/pdi23.png')
     del AA[-1]
     params = {"UserID":request.user,"time":AA}
     return render(request, "blog/xPDI22RH.html",context=params)
@@ -18161,7 +18161,7 @@ def yMBO22RH(request):
     textdata=AA
     wordcloud = WordCloud(background_color='white',stopwords={'para','a','o','e','de','do','da','em','no','na','cosmotec','por','com','br','que','os','as','é','das','dos'})
     wordcloud.generate(textdata)
-    wordcloud.to_file('./blog/static/mbo24.png')
+#    wordcloud.to_file('./blog/static/mbo24.png')
     AA=AA.split('^')
     del AA[-1]
     params = {"UserID":request.user,"time":AA}
@@ -18434,7 +18434,7 @@ def yADC22RHA(request):
     textdata=ZZ
     wordcloud = WordCloud(background_color='white',stopwords={'para','a','o','e','de','do','da','em','no','na','cosmotec','por','com','br','que','os','as','é','das','dos'})
     wordcloud.generate(textdata)
-    wordcloud.to_file('./blog/static/adc24.png')
+#    wordcloud.to_file('./blog/static/adc24.png')
     del AA[-1]
     params = {"UserID":request.user,"time":AA}
     return render(request, "blog/yADC22RHA.html",context=params)
@@ -18637,7 +18637,7 @@ def yPDI22RH(request):
     textdata=ZZ
     wordcloud = WordCloud(background_color='white',stopwords={'para','a','o','e','de','do','da','em','no','na','cosmotec','por','com','br','que','os','as','é','das','dos'})
     wordcloud.generate(textdata)
-    wordcloud.to_file('./blog/static/pdi24.png')
+#    wordcloud.to_file('./blog/static/pdi24.png')
     del AA[-1]
     params = {"UserID":request.user,"time":AA}
     return render(request, "blog/yPDI22RH.html",context=params)
