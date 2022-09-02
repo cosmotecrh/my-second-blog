@@ -1,3 +1,4 @@
+from wordcloud import WordCloud,STOPWORDS
 from django.shortcuts import render
 from django.utils import timezone
 from .models import Post
@@ -1045,8 +1046,8 @@ def PDI2(request, name):
             task.PDI22D = D
             task.save()
             time=2
-            subject = "seu PDI foi aprovado pelo avaliador/a, parabens!"
-            message = "seu PDI foi aprovado pelo avaliador/a, parabens!"
+            subject = "seu PDI 2022 foi aprovado pelo avaliador/a, parabens!"
+            message = "seu PDI 2022 foi aprovado pelo avaliador/a, parabens!"
             from_email = 'sistema.rh@cosmotec.com.br'  # 送信
             #from_email = 'hyuma2331@gmail.com'  # 送信
             recipient_list = [colaborador]  # 宛先リスト
@@ -1114,8 +1115,10 @@ def PDI2(request, name):
             task.PDI22C = new_status
             task.save()
             time=0
-            subject = "seu avaliador/a pediu te para corrigir seu PDI"
-            message = "seu avaliador/a pediu te para corrigir seu PDI, talvez tenha algo errado e tenha que corrigir, entre o sistema e corrija"
+            subject = "seu avaliador/a pediu te para corrigir seu PDI 2022"
+            message = "seu avaliador/a pediu te para corrigir seu PDI 2022, talvez tenha algo errado e tenha que corrigir, entre o sistema e corrija"
+            message += '\n'
+            message += 'https://cosmotecrh.pythonanywhere.com'
             from_email = 'sistema.rh@cosmotec.com.br'  # 送信
 #            from_email = 'hyuma2331@gmail.com'  # 送信
             recipient_list = [colaborador]  # 宛先リスト
@@ -1258,7 +1261,9 @@ def Logout2(request, name):
                 task.MBO22Q4D = D
                 BBB='MBO 2022 avaliação e pontuação de '
                 task.save()
-            subject = "seu MBO foi aprovado pelo avaliador/a, parabens!"
+
+            BBB+=colaborador
+            subject = BBB
             message = "seu MBO foi aprovado pelo avaliador/a, parabens!"
             from_email = 'sistema.rh@cosmotec.com.br'  # 送信            
             recipient_list = [colaborador]  # 宛先リスト
@@ -1357,7 +1362,6 @@ def Logout2(request, name):
             AA1+=str(AA2[6])
             AA1+='\n'
 
-            BBB+=colaborador
             subject = BBB
             message = AA1
             recipient_list = ['sistema.rh@cosmotec.com.br']
@@ -1377,12 +1381,16 @@ def Logout2(request, name):
             if (MBO22TIME==4):
                 task.MBO22Q4 = new_status
                 task.save()
-            subject = "seu avaliador/a pediu te para corrigir seu MBO"
+
+            subject = BBB
             message = "seu avaliador/a pediu te para corrigir seu MBO, talvez tenha algo errado e tenha que corrigir, entre o sistema e corrija"
+            message += '\n'
+            message += 'https://cosmotecrh.pythonanywhere.com'
 #            from_email = 'hyuma2331@gmail.com'  # 送信
             from_email = 'sistema.rh@cosmotec.com.br'  # 送信
             recipient_list = [colaborador]  # 宛先リスト
             send_mail(subject, message, from_email, recipient_list)
+
         elif "DL" in request.POST:
             output = io.BytesIO()
             book = op.Workbook(output)
@@ -1657,6 +1665,7 @@ def Logout(request):
                     new_status = 1
                     task.MBO22Q1 = new_status
                     task.save()
+                    BBB = 'MBO 2022 peso e meta de '
                 else :
                     time = 5
                     params = {"UserID":request.user,"data1":MBO22.objects.values_list('MBO22A1','MBO22B1','MBO22C1','MBO22D1','MBO22E1','MBO22F1','MBO22G1').get(user=request.user),"data2":MBO22.objects.values_list('MBO22AP','MBO22BP','MBO22CP','MBO22DP','MBO22EP','MBO22FP','MBO22GP').get(user=request.user),"data3":MBO22.objects.values_list('MBO22A2','MBO22B2','MBO22C2','MBO22D2','MBO22E2','MBO22F2','MBO22G2').get(user=request.user),"data4":MBO22.objects.values_list('MBO22A3','MBO22B3','MBO22C3','MBO22D3','MBO22E3','MBO22F3','MBO22G3').get(user=request.user),"data5":MBO22.objects.values_list('MBO22A4','MBO22B4','MBO22C4','MBO22D4','MBO22E4','MBO22F4','MBO22G4').get(user=request.user),"data6":MBO22.objects.values_list('MBO22AR','MBO22BR','MBO22CR','MBO22DR','MBO22ER','MBO22FR','MBO22GR').get(user=request.user),"data7":request.user.email,"time":time,"ptotal":ptotal}
@@ -1666,23 +1675,28 @@ def Logout(request):
                 new_status = 1
                 task.MBO22Q2 = new_status
                 task.save()
+                BBB = 'MBO 2022 primeiro alinhamento de '
             if (time==3):
                 task = get_object_or_404(MBO22, user=request.user)
                 new_status = 1
                 task.MBO22Q3 = new_status
                 task.save()
+                BBB = 'MBO 2022 segundo alinhamento de '
             if (time==4):
                 task = get_object_or_404(MBO22, user=request.user)
                 new_status = 1
                 task.MBO22Q4 = new_status
                 task.save()
+                BBB = 'MBO 2022 avaliação e pontuação do final do ano de '
             if (time!=5):
                 time=0
                 params = {"UserID":request.user,"data1":MBO22.objects.values_list('MBO22A1','MBO22B1','MBO22C1','MBO22D1','MBO22E1','MBO22F1','MBO22G1').get(user=request.user),"data2":MBO22.objects.values_list('MBO22AP','MBO22BP','MBO22CP','MBO22DP','MBO22EP','MBO22FP','MBO22GP').get(user=request.user),"data3":MBO22.objects.values_list('MBO22A2','MBO22B2','MBO22C2','MBO22D2','MBO22E2','MBO22F2','MBO22G2').get(user=request.user),"data4":MBO22.objects.values_list('MBO22A3','MBO22B3','MBO22C3','MBO22D3','MBO22E3','MBO22F3','MBO22G3').get(user=request.user),"data5":MBO22.objects.values_list('MBO22A4','MBO22B4','MBO22C4','MBO22D4','MBO22E4','MBO22F4','MBO22G4').get(user=request.user),"data6":MBO22.objects.values_list('MBO22AR','MBO22BR','MBO22CR','MBO22DR','MBO22ER','MBO22FR','MBO22GR').get(user=request.user),"data7":request.user.email,"time":time}
-                subject = request.user.username
-                subject += " submeteru MBO, entre o sistema e aprove ou peça corrigir"
+                subject = BBB
+                subject += request.user.username
                 message = request.user.username
-                message += " submeteru MBO, entre o sistema e aprove ou peça corrigir"
+                message += " submeteu MBO, entre o sistema e aprove ou peça corrigir"
+                message += '\n'
+                message += 'https://cosmotecrh.pythonanywhere.com'
                 from_email = 'hyuma2331@gmail.com'  # 送信
 #                from_email = 'sistema.rh@cosmotec.com.br'  # 送信
                 recipient_list = [request.user.email]  # 宛先リスト
@@ -1843,9 +1857,11 @@ def ADC(request):
             task.save()
             time=1
             subject = request.user.username
-            subject += " submeteru avaliação de competencia, entre o sistema e aprove ou peça corrigir"
+            subject += " submeteu avaliação de competencia 2022, entre o sistema e aprove ou peça corrigir"
             message = request.user.username
-            message += " submeteru avaliação de competencia, entre o sistema e aprove ou peça corrigir"
+            message += " submeteu avaliação de competencia 2022, entre o sistema e aprove ou peça corrigir"
+            message += '\n'
+            message += 'https://cosmotecrh.pythonanywhere.com'
 #            from_email = 'hyuma2331@gmail.com'  # 送信
             from_email = 'sistema.rh@cosmotec.com.br'  # 送信
             recipient_list = [request.user.email]  # 宛先リスト
@@ -2042,8 +2058,8 @@ def ADC2(request,name):
             task.ADC22D = D
             task.save()
             time=2
-            subject = "sua avaliação de competencia foi aprovado, parabens!"
-            message = "sua avaliação de competencia foi aprovado, parabens!"
+            subject = "sua avaliação de competencia 2022 foi aprovado, parabens!"
+            message = "sua avaliação de competencia 2022 foi aprovado, parabens!"
             from_email = 'sistema.rh@cosmotec.com.br'  # 送信
             recipient_list = [colaborador]  # 宛先リスト
             send_mail(subject, message, from_email, recipient_list)
@@ -2397,9 +2413,11 @@ def PDI(request):
             task.save()
             time=1
             subject = request.user.username
-            subject += " submeteru plano de desenvolvimento individual, entre o sistema e aprove ou peça corrigir"
+            subject += " submeteu plano de desenvolvimento individual 2022, entre o sistema e aprove ou peça corrigir"
             message = request.user.username
-            message += " submeteru plano de desenvolvimento individual, entre o sistema e aprove ou peça corrigir"
+            message += " submeteu plano de desenvolvimento individual 2022, entre o sistema e aprove ou peça corrigir"
+            message += '\n'
+            message += 'https://cosmotecrh.pythonanywhere.com'
 #            from_email = 'hyuma2331@gmail.com'  # 送信
             from_email = 'sistema.rh@cosmotec.com.br'  # 送信
             recipient_list = [request.user.email]  # 宛先リスト
@@ -3386,8 +3404,12 @@ def MBO22RH(request):
         except:
             AA+='não tem MBO'
             AA+='^'
+    textdata = AA
     AA=AA.split('^')
     del AA[-1]
+    wordcloud = WordCloud(background_color='white',stopwords={'para','a','o','e','de','do','da','em','no','na','cosmotec','por','com','br','que','os','as','é','das','dos'})
+    wordcloud.generate(textdata)
+    wordcloud.to_file('./blog/static/mbo22.png')
     params = {"UserID":request.user,"time":AA}
     return render(request, "blog/MBO22RH.html",context=params)
 
@@ -3419,6 +3441,7 @@ def ADC22RHA(request):
 
     object_list = User.objects.all()
     AA=''
+    ZZ=''
     BB=[]
     for i in object_list:
         AA+='#'
@@ -3452,10 +3475,12 @@ def ADC22RHA(request):
             AA+='^'
             BB=ADC22.objects.values_list('ADC22G1OC').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=ADC22.objects.values_list('ADC22G1O').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -3474,10 +3499,12 @@ def ADC22RHA(request):
             AA+='^'
             BB=ADC22.objects.values_list('ADC22G2OC').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=ADC22.objects.values_list('ADC22G2O').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -3496,10 +3523,12 @@ def ADC22RHA(request):
             AA+='^'
             BB=ADC22.objects.values_list('ADC22G3OC').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=ADC22.objects.values_list('ADC22G3O').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -3518,10 +3547,12 @@ def ADC22RHA(request):
             AA+='^'
             BB=ADC22.objects.values_list('ADC22G4OC').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=ADC22.objects.values_list('ADC22G4O').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -3540,10 +3571,12 @@ def ADC22RHA(request):
             AA+='^'
             BB=ADC22.objects.values_list('ADC22G5OC').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=ADC22.objects.values_list('ADC22G5O').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -3562,10 +3595,12 @@ def ADC22RHA(request):
             AA+='^'
             BB=ADC22.objects.values_list('ADC22G6OC').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=ADC22.objects.values_list('ADC22G6O').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -3584,10 +3619,12 @@ def ADC22RHA(request):
             AA+='^'
             BB=ADC22.objects.values_list('ADC22G7OC').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=ADC22.objects.values_list('ADC22G7O').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -3604,10 +3641,12 @@ def ADC22RHA(request):
             AA+='^'
             BB=ADC22.objects.values_list('ADC22E1OC').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=ADC22.objects.values_list('ADC22E1O').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -3624,10 +3663,12 @@ def ADC22RHA(request):
             AA+='^'
             BB=ADC22.objects.values_list('ADC22E2OC').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=ADC22.objects.values_list('ADC22E2O').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -3635,6 +3676,10 @@ def ADC22RHA(request):
         except:
             AA+='não tem avaliação de competencia'
             AA+='^'
+    textdata=ZZ
+    wordcloud = WordCloud(background_color='white',stopwords={'para','a','o','e','de','do','da','em','no','na','cosmotec','por','com','br','que','os','as','é','das','dos'})
+    wordcloud.generate(textdata)
+    wordcloud.to_file('./blog/static/adc22.png')
     AA=AA.split('^')
     del AA[-1]
     params = {"UserID":request.user,"time":AA}
@@ -3668,6 +3713,7 @@ def PDI22RH(request):
 
     object_list = User.objects.all()
     AA=''
+    ZZ=''
     BB=[]
     for i in object_list:
         AA+='#'
@@ -3724,10 +3770,12 @@ def PDI22RH(request):
                     AA+='^'
             BB=PDI22.objects.values_list('PDI22G1PD').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=PDI22.objects.values_list('PDI22G1').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -3746,10 +3794,12 @@ def PDI22RH(request):
                     AA+='^'
             BB=PDI22.objects.values_list('PDI22G2PD').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=PDI22.objects.values_list('PDI22G2').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -3768,10 +3818,12 @@ def PDI22RH(request):
                     AA+='^'
             BB=PDI22.objects.values_list('PDI22G3PD').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=PDI22.objects.values_list('PDI22G3').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -3790,10 +3842,12 @@ def PDI22RH(request):
             AA+='^'
             BB=PDI22.objects.values_list('PDI22E1PD').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=PDI22.objects.values_list('PDI22E1').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -3812,10 +3866,12 @@ def PDI22RH(request):
             AA+='^'
             BB=PDI22.objects.values_list('PDI22E2PD').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=PDI22.objects.values_list('PDI22E2').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -3823,6 +3879,10 @@ def PDI22RH(request):
         except:
             AA+='não tem PDI'
             AA+='^'
+    textdata=ZZ
+    wordcloud = WordCloud(background_color='white',stopwords={'para','a','o','e','de','do','da','em','no','na','cosmotec','por','com','br','que','os','as','é','das','dos'})
+    wordcloud.generate(textdata)
+    wordcloud.to_file('./blog/static/pdi22.png')
     AA=AA.split('^')
     del AA[-1]
     params = {"UserID":request.user,"time":AA}
@@ -9342,8 +9402,8 @@ def xPDI2(request, name):
             task.PDI23D = D
             task.save()
             time=2
-            subject = "seu PDI foi aprovado pelo avaliador/a, parabens!"
-            message = "seu PDI foi aprovado pelo avaliador/a, parabens!"
+            subject = "seu PDI 2023 foi aprovado pelo avaliador/a, parabens!"
+            message = "seu PDI 2023 foi aprovado pelo avaliador/a, parabens!"
             from_email = 'sistema.rh@cosmotec.com.br'  # 送信
             #from_email = 'hyuma2331@gmail.com'  # 送信
             recipient_list = [colaborador]  # 宛先リスト
@@ -9399,8 +9459,10 @@ def xPDI2(request, name):
             task.PDI23C = new_status
             task.save()
             time=0
-            subject = "seu avaliador/a pediu te para corrigir seu PDI"
-            message = "seu avaliador/a pediu te para corrigir seu PDI, talvez tenha algo errado e tenha que corrigir, entre o sistema e corrija"
+            subject = "seu avaliador/a pediu te para corrigir seu PDI 2023"
+            message = "seu avaliador/a pediu te para corrigir seu PDI 2023, talvez tenha algo errado e tenha que corrigir, entre o sistema e corrija"
+            message += '\n'
+            message += 'https://cosmotecrh.pythonanywhere.com'
             from_email = 'sistema.rh@cosmotec.com.br'  # 送信
 #            from_email = 'hyuma2331@gmail.com'  # 送信
             recipient_list = [colaborador]  # 宛先リスト
@@ -9539,7 +9601,9 @@ def xLogout2(request, name):
                 task.MBO23Q4D = D
                 BBB='MBO 2023 avaliação e pontuação de '
                 task.save()
-            subject = "seu MBO foi aprovado pelo avaliador/a, parabens!"
+
+            BBB+=colaborador
+            subject = BBB
             message = "seu MBO foi aprovado pelo avaliador/a, parabens!"
             from_email = 'sistema.rh@cosmotec.com.br'  # 送信            
             recipient_list = [colaborador]  # 宛先リスト
@@ -9638,7 +9702,6 @@ def xLogout2(request, name):
             AA1+=str(AA2[6])
             AA1+='\n'
             
-            BBB+=colaborador
             subject = BBB
             message = AA1
             recipient_list = ['sistema.rh@cosmotec.com.br']
@@ -9658,8 +9721,11 @@ def xLogout2(request, name):
             if (MBO23TIME==4):
                 task.MBO23Q4 = new_status
                 task.save()
-            subject = "seu avaliador/a pediu te para corrigir seu MBO"
+
+            subject = BBB
             message = "seu avaliador/a pediu te para corrigir seu MBO, talvez tenha algo errado e tenha que corrigir, entre o sistema e corrija"
+            message += '\n'
+            message += 'https://cosmotecrh.pythonanywhere.com'
 #            from_email = 'hyuma2331@gmail.com'  # 送信
             from_email = 'sistema.rh@cosmotec.com.br'  # 送信
             recipient_list = [colaborador]  # 宛先リスト
@@ -9940,28 +10006,34 @@ def xLogout(request):
                     time = 5
                     params = {"UserID":request.user,"data1":MBO22.objects.values_list('MBO23A1','MBO23B1','MBO23C1','MBO23D1','MBO23E1','MBO23F1','MBO23G1').get(user=request.user),"data2":MBO22.objects.values_list('MBO23AP','MBO23BP','MBO23CP','MBO23DP','MBO23EP','MBO23FP','MBO23GP').get(user=request.user),"data3":MBO22.objects.values_list('MBO23A2','MBO23B2','MBO23C2','MBO23D2','MBO23E2','MBO23F2','MBO23G2').get(user=request.user),"data4":MBO22.objects.values_list('MBO23A3','MBO23B3','MBO23C3','MBO23D3','MBO23E3','MBO23F3','MBO23G3').get(user=request.user),"data5":MBO22.objects.values_list('MBO23A4','MBO23B4','MBO23C4','MBO23D4','MBO23E4','MBO23F4','MBO23G4').get(user=request.user),"data6":MBO22.objects.values_list('MBO23AR','MBO23BR','MBO23CR','MBO23DR','MBO23ER','MBO23FR','MBO23GR').get(user=request.user),"data7":request.user.email,"time":time,"ptotal":ptotal}
                     return render(request, "blog/xLogout.html", context=params)
+                    BBB = 'MBO 2023 meta e peso de '
             if (time==2):
                 task = get_object_or_404(MBO22, user=request.user)
                 new_status = 1
                 task.MBO23Q2 = new_status
                 task.save()
+                BBB = 'MBO 2023 primeiro alinhamento de '
             if (time==3):
                 task = get_object_or_404(MBO22, user=request.user)
                 new_status = 1
                 task.MBO23Q3 = new_status
                 task.save()
+                BBB = 'MBO 2023 segundo alinhamento de '
             if (time==4):
                 task = get_object_or_404(MBO22, user=request.user)
                 new_status = 1
                 task.MBO23Q4 = new_status
                 task.save()
+                BBB = 'MBO 2023 avaliação e pontuação do final do ano de '
             if (time!=5):
                 time=0
                 params = {"UserID":request.user,"data1":MBO22.objects.values_list('MBO23A1','MBO23B1','MBO23C1','MBO23D1','MBO23E1','MBO23F1','MBO23G1').get(user=request.user),"data2":MBO22.objects.values_list('MBO23AP','MBO23BP','MBO23CP','MBO23DP','MBO23EP','MBO23FP','MBO23GP').get(user=request.user),"data3":MBO22.objects.values_list('MBO23A2','MBO23B2','MBO23C2','MBO23D2','MBO23E2','MBO23F2','MBO23G2').get(user=request.user),"data4":MBO22.objects.values_list('MBO23A3','MBO23B3','MBO23C3','MBO23D3','MBO23E3','MBO23F3','MBO23G3').get(user=request.user),"data5":MBO22.objects.values_list('MBO23A4','MBO23B4','MBO23C4','MBO23D4','MBO23E4','MBO23F4','MBO23G4').get(user=request.user),"data6":MBO22.objects.values_list('MBO23AR','MBO23BR','MBO23CR','MBO23DR','MBO23ER','MBO23FR','MBO23GR').get(user=request.user),"data7":request.user.email,"time":time}
-                subject = request.user.username
-                subject += " submeteru MBO, entre o sistema e aprove ou peça corrigir"
+                subject = BBB
+                subject += request.user.username
                 message = request.user.username
-                message += " submeteru MBO, entre o sistema e aprove ou peça corrigir"
+                message += " submeteu MBO 2023, entre o sistema e aprove ou peça corrigir"
+                message += '\n'
+                message += 'https://cosmotecrh.pythonanywhere.com'
                 from_email = 'hyuma2331@gmail.com'  # 送信
 #                from_email = 'sistema.rh@cosmotec.com.br'  # 送信
                 recipient_list = [request.user.email]  # 宛先リスト
@@ -10120,9 +10192,11 @@ def xADC(request):
             task.save()
             time=1
             subject = request.user.username
-            subject += " submeteru avaliação de competencia, entre o sistema e aprove ou peça corrigir"
+            subject += " submeteu avaliação de competencia 2023, entre o sistema e aprove ou peça corrigir"
             message = request.user.username
-            message += " submeteru avaliação de competencia, entre o sistema e aprove ou peça corrigir"
+            message += " submeteu avaliação de competencia 2023, entre o sistema e aprove ou peça corrigir"
+            message += '\n'
+            message += 'https://cosmotecrh.pythonanywhere.com'
 #            from_email = 'hyuma2331@gmail.com'  # 送信
             from_email = 'sistema.rh@cosmotec.com.br'  # 送信
             recipient_list = [request.user.email]  # 宛先リスト
@@ -10318,8 +10392,8 @@ def xADC2(request,name):
             task.ADC23D = D
             task.save()
             time=2
-            subject = "sua avaliação de competencia foi aprovado, parabens!"
-            message = "sua avaliação de competencia foi aprovado, parabens!"
+            subject = "sua avaliação de competencia 2023 foi aprovado, parabens!"
+            message = "sua avaliação de competencia 2023 foi aprovado, parabens!"
             from_email = 'sistema.rh@cosmotec.com.br'  # 送信
             recipient_list = [colaborador]  # 宛先リスト
             send_mail(subject, message, from_email, recipient_list)
@@ -10672,9 +10746,11 @@ def xPDI(request):
             task.save()
             time=1
             subject = request.user.username
-            subject += " submeteru plano de desenvolvimento individual, entre o sistema e aprove ou peça corrigir"
+            subject += " submeteu plano de desenvolvimento individual 2023, entre o sistema e aprove ou peça corrigir"
             message = request.user.username
-            message += " submeteru plano de desenvolvimento individual, entre o sistema e aprove ou peça corrigir"
+            message += " submeteu plano de desenvolvimento individual 2023, entre o sistema e aprove ou peça corrigir"
+            message += '\n'
+            message += 'https://cosmotecrh.pythonanywhere.com'
 #            from_email = 'hyuma2331@gmail.com'  # 送信
             from_email = 'sistema.rh@cosmotec.com.br'  # 送信
             recipient_list = [request.user.email]  # 宛先リスト
@@ -11583,7 +11659,11 @@ def xMBO22RH(request):
         except:
             AA+='não tem MBO'
             AA+='^'
+    textdata=AA
     AA=AA.split('^')
+    wordcloud = WordCloud(background_color='white',stopwords={'para','a','o','e','de','do','da','em','no','na','cosmotec','por','com','br','que','os','as','é','das','dos'})
+    wordcloud.generate(textdata)
+    wordcloud.to_file('./blog/static/mbo23.png')
     del AA[-1]
     params = {"UserID":request.user,"time":AA}
     return render(request, "blog/xMBO22RH.html",context=params)
@@ -11616,6 +11696,7 @@ def xADC22RHA(request):
 
     object_list = User.objects.all()
     AA=''
+    ZZ='nozaki'
     BB=[]
     for i in object_list:
         AA+='#'
@@ -11649,10 +11730,12 @@ def xADC22RHA(request):
             AA+='^'
             BB=ADC22.objects.values_list('ADC23G1OC').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=ADC22.objects.values_list('ADC23G1O').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -11671,10 +11754,12 @@ def xADC22RHA(request):
             AA+='^'
             BB=ADC22.objects.values_list('ADC23G2OC').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=ADC22.objects.values_list('ADC23G2O').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -11693,10 +11778,12 @@ def xADC22RHA(request):
             AA+='^'
             BB=ADC22.objects.values_list('ADC23G3OC').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=ADC22.objects.values_list('ADC23G3O').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -11715,10 +11802,12 @@ def xADC22RHA(request):
             AA+='^'
             BB=ADC22.objects.values_list('ADC23G4OC').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=ADC22.objects.values_list('ADC23G4O').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -11737,10 +11826,12 @@ def xADC22RHA(request):
             AA+='^'
             BB=ADC22.objects.values_list('ADC23G5OC').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=ADC22.objects.values_list('ADC23G5O').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -11759,10 +11850,12 @@ def xADC22RHA(request):
             AA+='^'
             BB=ADC22.objects.values_list('ADC23G6OC').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=ADC22.objects.values_list('ADC23G6O').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -11780,11 +11873,13 @@ def xADC22RHA(request):
             BB=[]
             AA+='^'
             BB=ADC22.objects.values_list('ADC23G7OC').get(user=i.id)
+            ZZ+=BB[0]
             AA+=BB[0]
             BB=[]
             AA+='^'
             BB=ADC22.objects.values_list('ADC23G7O').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -11801,10 +11896,12 @@ def xADC22RHA(request):
             AA+='^'
             BB=ADC22.objects.values_list('ADC23E1OC').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=ADC22.objects.values_list('ADC23E1O').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -11821,10 +11918,12 @@ def xADC22RHA(request):
             AA+='^'
             BB=ADC22.objects.values_list('ADC23E2OC').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=ADC22.objects.values_list('ADC23E2O').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -11833,6 +11932,10 @@ def xADC22RHA(request):
             AA+='não tem avaliação de competencia'
             AA+='^'
     AA=AA.split('^')
+    textdata=ZZ
+    wordcloud = WordCloud(background_color='white',stopwords={'para','a','o','e','de','do','da','em','no','na','cosmotec','por','com','br','que','os','as','é','das','dos'})
+    wordcloud.generate(textdata)
+    wordcloud.to_file('./blog/static/adc23.png')
     del AA[-1]
     params = {"UserID":request.user,"time":AA}
     return render(request, "blog/xADC22RHA.html",context=params)
@@ -11865,6 +11968,7 @@ def xPDI22RH(request):
 
     object_list = User.objects.all()
     AA=''
+    ZZ='nozaki'
     BB=[]
     for i in object_list:
         AA+='#'
@@ -11921,10 +12025,12 @@ def xPDI22RH(request):
                     AA+='^'
             BB=PDI22.objects.values_list('PDI23G1PD').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=PDI22.objects.values_list('PDI23G1').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -11943,10 +12049,12 @@ def xPDI22RH(request):
                     AA+='^'
             BB=PDI22.objects.values_list('PDI23G2PD').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=PDI22.objects.values_list('PDI23G2').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -11965,10 +12073,12 @@ def xPDI22RH(request):
                     AA+='^'
             BB=PDI22.objects.values_list('PDI23G3PD').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=PDI22.objects.values_list('PDI23G3').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -11987,10 +12097,12 @@ def xPDI22RH(request):
             AA+='^'
             BB=PDI22.objects.values_list('PDI23E1PD').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=PDI22.objects.values_list('PDI23E1').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -12009,10 +12121,12 @@ def xPDI22RH(request):
             AA+='^'
             BB=PDI22.objects.values_list('PDI23E2PD').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=PDI22.objects.values_list('PDI23E2').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -12021,6 +12135,10 @@ def xPDI22RH(request):
             AA+='não tem PDI'
             AA+='^'
     AA=AA.split('^')
+    textdata=ZZ
+    wordcloud = WordCloud(background_color='white',stopwords={'para','a','o','e','de','do','da','em','no','na','cosmotec','por','com','br','que','os','as','é','das','dos'})
+    wordcloud.generate(textdata)
+    wordcloud.to_file('./blog/static/pdi23.png')
     del AA[-1]
     params = {"UserID":request.user,"time":AA}
     return render(request, "blog/xPDI22RH.html",context=params)
@@ -15790,8 +15908,8 @@ def yPDI2(request, name):
             task.PDI24D = D
             task.save()
             time=2
-            subject = "seu PDI foi aprovado pelo avaliador/a, parabens!"
-            message = "seu PDI foi aprovado pelo avaliador/a, parabens!"
+            subject = "seu PDI 2024 foi aprovado pelo avaliador/a, parabens!"
+            message = "seu PDI 2024 foi aprovado pelo avaliador/a, parabens!"
             from_email = 'sistema.rh@cosmotec.com.br'  # 送信
             #from_email = 'hyuma2331@gmail.com'  # 送信
             recipient_list = [colaborador]  # 宛先リスト
@@ -15847,8 +15965,10 @@ def yPDI2(request, name):
             task.PDI24C = new_status
             task.save()
             time=0
-            subject = "seu avaliador/a pediu te para corrigir seu PDI"
-            message = "seu avaliador/a pediu te para corrigir seu PDI, talvez tenha algo errado e tenha que corrigir, entre o sistema e corrija"
+            subject = "seu avaliador/a pediu te para corrigir seu PDI 2024"
+            message = "seu avaliador/a pediu te para corrigir seu PDI 2024, talvez tenha algo errado e tenha que corrigir, entre o sistema e corrija"
+            message += '\n'
+            message += 'https://cosmotecrh.pythonanywhere.com'
             from_email = 'sistema.rh@cosmotec.com.br'  # 送信
 #            from_email = 'hyuma2331@gmail.com'  # 送信
             recipient_list = [colaborador]  # 宛先リスト
@@ -15984,7 +16104,9 @@ def yLogout2(request, name):
                 task.MBO24Q4D = D
                 BBB='MBO 2024 avaliação e pontuação de '
                 task.save()
-            subject = "seu MBO foi aprovado pelo avaliador/a, parabens!"
+
+            BBB+=colaborador
+            subject = BBB
             message = "seu MBO foi aprovado pelo avaliador/a, parabens!"
             from_email = 'sistema.rh@cosmotec.com.br'  # 送信            
             recipient_list = [colaborador]  # 宛先リスト
@@ -16083,7 +16205,6 @@ def yLogout2(request, name):
             AA1+=str(AA2[6])
             AA1+='\n'
 
-            BBB+=colaborador
             subject = BBB
             message = AA1
             recipient_list = ['sistema.rh@cosmotec.com.br']
@@ -16103,8 +16224,10 @@ def yLogout2(request, name):
             if (MBO24TIME==4):
                 task.MBO24Q4 = new_status
                 task.save()
-            subject = "seu avaliador/a pediu te para corrigir seu MBO"
+            subject = BBB
             message = "seu avaliador/a pediu te para corrigir seu MBO, talvez tenha algo errado e tenha que corrigir, entre o sistema e corrija"
+            message += '\n'
+            message += 'https://cosmotecrh.pythonanywhere.com'
 #            from_email = 'hyuma2331@gmail.com'  # 送信
             from_email = 'sistema.rh@cosmotec.com.br'  # 送信
             recipient_list = [colaborador]  # 宛先リスト
@@ -16376,6 +16499,7 @@ def yLogout(request):
                     new_status = 1
                     task.MBO24Q1 = new_status
                     task.save()
+                    BBB = 'MBO 2024 meta e peso de'
                 else :
                     time = 5
                     params = {
@@ -16394,16 +16518,19 @@ def yLogout(request):
                 new_status = 1
                 task.MBO24Q2 = new_status
                 task.save()
+                BBB = 'MBO 2024 primeiro alinhamento de '
             if (time==3):
                 task = get_object_or_404(MBO22, user=request.user)
                 new_status = 1
                 task.MBO24Q3 = new_status
                 task.save()
+                BBB = 'MBO 2024 segundo alinhamento de '
             if (time==4):
                 task = get_object_or_404(MBO22, user=request.user)
                 new_status = 1
                 task.MBO24Q4 = new_status
                 task.save()
+                BBB = 'MBO 2024 avaliação e pontuação do final do ano de '
             if (time!=5):
                 time=0
                 params = {
@@ -16416,10 +16543,12 @@ def yLogout(request):
                     "data6":MBO22.objects.values_list('MBO24AR','MBO24BR','MBO24CR','MBO24DR','MBO24ER','MBO24FR','MBO24GR').get(user=request.user),
                     "data7":request.user.email,"time":time
                     }
-                subject = request.user.username
-                subject += " submeteru MBO, entre o sistema e aprove ou peça corrigir"
+                subject = BBB
+                subject += request.user.username
                 message = request.user.username
-                message += " submeteru MBO, entre o sistema e aprove ou peça corrigir"
+                message += " submeteu MBO, entre o sistema e aprove ou peça corrigir"
+                message += '\n'
+                message += 'https://cosmotecrh.pythonanywhere.com'
                 from_email = 'hyuma2331@gmail.com'  # 送信
 #                from_email = 'sistema.rh@cosmotec.com.br'  # 送信
                 recipient_list = [request.user.email]  # 宛先リスト
@@ -16573,9 +16702,11 @@ def yADC(request):
             task.save()
             time=1
             subject = request.user.username
-            subject += " submeteru avaliação de competencia, entre o sistema e aprove ou peça corrigir"
+            subject += " submeteu avaliação de competencia 2024, entre o sistema e aprove ou peça corrigir"
             message = request.user.username
-            message += " submeteru avaliação de competencia, entre o sistema e aprove ou peça corrigir"
+            message += " submeteu avaliação de competencia 2024, entre o sistema e aprove ou peça corrigir"
+            message += '\n'
+            message += 'https://cosmotecrh.pythonanywhere.com'
 #            from_email = 'hyuma2331@gmail.com'  # 送信
             from_email = 'sistema.rh@cosmotec.com.br'  # 送信
             recipient_list = [request.user.email]  # 宛先リスト
@@ -16766,8 +16897,8 @@ def yADC2(request,name):
             task.ADC24D = D
             task.save()
             time=2
-            subject = "sua avaliação de competencia foi aprovado, parabens!"
-            message = "sua avaliação de competencia foi aprovado, parabens!"
+            subject = "sua avaliação de competencia 2024 foi aprovado, parabens!"
+            message = "sua avaliação de competencia 2024 foi aprovado, parabens!"
             from_email = 'sistema.rh@cosmotec.com.br'  # 送信
             recipient_list = [colaborador]  # 宛先リスト
             send_mail(subject, message, from_email, recipient_list)
@@ -17118,9 +17249,11 @@ def yPDI(request):
             task.save()
             time=1
             subject = request.user.username
-            subject += " submeteru plano de desenvolvimento individual, entre o sistema e aprove ou peça corrigir"
+            subject += " submeteu plano de desenvolvimento individual 2024, entre o sistema e aprove ou peça corrigir"
             message = request.user.username
-            message += " submeteru plano de desenvolvimento individual, entre o sistema e aprove ou peça corrigir"
+            message += " submeteu plano de desenvolvimento individual 2024, entre o sistema e aprove ou peça corrigir"
+            message += '\n'
+            message += 'https://cosmotecrh.pythonanywhere.com'
 #            from_email = 'hyuma2331@gmail.com'  # 送信
             from_email = 'sistema.rh@cosmotec.com.br'  # 送信
             recipient_list = [request.user.email]  # 宛先リスト
@@ -18024,6 +18157,10 @@ def yMBO22RH(request):
         except:
             AA+='não tem MBO'
             AA+='^'
+    textdata=AA
+    wordcloud = WordCloud(background_color='white',stopwords={'para','a','o','e','de','do','da','em','no','na','cosmotec','por','com','br','que','os','as','é','das','dos'})
+    wordcloud.generate(textdata)
+    wordcloud.to_file('./blog/static/mbo24.png')
     AA=AA.split('^')
     del AA[-1]
     params = {"UserID":request.user,"time":AA}
@@ -18057,6 +18194,7 @@ def yADC22RHA(request):
 
     object_list = User.objects.all()
     AA=''
+    ZZ='nozaki'
     BB=[]
     for i in object_list:
         AA+='#'
@@ -18090,10 +18228,12 @@ def yADC22RHA(request):
             AA+='^'
             BB=ADC22.objects.values_list('ADC24G1OC').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=ADC22.objects.values_list('ADC24G1O').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -18112,10 +18252,12 @@ def yADC22RHA(request):
             AA+='^'
             BB=ADC22.objects.values_list('ADC24G2OC').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=ADC22.objects.values_list('ADC24G2O').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -18134,10 +18276,12 @@ def yADC22RHA(request):
             AA+='^'
             BB=ADC22.objects.values_list('ADC24G3OC').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=ADC22.objects.values_list('ADC24G3O').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -18156,10 +18300,12 @@ def yADC22RHA(request):
             AA+='^'
             BB=ADC22.objects.values_list('ADC24G4OC').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=ADC22.objects.values_list('ADC24G4O').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -18178,10 +18324,12 @@ def yADC22RHA(request):
             AA+='^'
             BB=ADC22.objects.values_list('ADC24G5OC').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=ADC22.objects.values_list('ADC24G5O').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -18200,10 +18348,12 @@ def yADC22RHA(request):
             AA+='^'
             BB=ADC22.objects.values_list('ADC24G6OC').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=ADC22.objects.values_list('ADC24G6O').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -18222,10 +18372,12 @@ def yADC22RHA(request):
             AA+='^'
             BB=ADC22.objects.values_list('ADC24G7OC').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=ADC22.objects.values_list('ADC24G7O').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -18242,10 +18394,12 @@ def yADC22RHA(request):
             AA+='^'
             BB=ADC22.objects.values_list('ADC24E1OC').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=ADC22.objects.values_list('ADC24E1O').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -18262,10 +18416,12 @@ def yADC22RHA(request):
             AA+='^'
             BB=ADC22.objects.values_list('ADC24E2OC').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=ADC22.objects.values_list('ADC24E2O').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -18274,6 +18430,10 @@ def yADC22RHA(request):
             AA+='não tem avaliação de competencia'
             AA+='^'
     AA=AA.split('^')
+    textdata=ZZ
+    wordcloud = WordCloud(background_color='white',stopwords={'para','a','o','e','de','do','da','em','no','na','cosmotec','por','com','br','que','os','as','é','das','dos'})
+    wordcloud.generate(textdata)
+    wordcloud.to_file('./blog/static/adc24.png')
     del AA[-1]
     params = {"UserID":request.user,"time":AA}
     return render(request, "blog/yADC22RHA.html",context=params)
@@ -18306,6 +18466,7 @@ def yPDI22RH(request):
 
     object_list = User.objects.all()
     AA=''
+    ZZ='nozaki'
     BB=[]
     for i in object_list:
         AA+='#'
@@ -18362,10 +18523,12 @@ def yPDI22RH(request):
                     AA+='^'
             BB=PDI22.objects.values_list('PDI24G1PD').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=PDI22.objects.values_list('PDI24G1').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -18384,10 +18547,12 @@ def yPDI22RH(request):
                     AA+='^'
             BB=PDI22.objects.values_list('PDI24G2PD').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=PDI22.objects.values_list('PDI24G2').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -18406,10 +18571,12 @@ def yPDI22RH(request):
                     AA+='^'
             BB=PDI22.objects.values_list('PDI24G3PD').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=PDI22.objects.values_list('PDI24G3').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -18428,10 +18595,12 @@ def yPDI22RH(request):
             AA+='^'
             BB=PDI22.objects.values_list('PDI24E1PD').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=PDI22.objects.values_list('PDI24E1').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -18450,10 +18619,12 @@ def yPDI22RH(request):
             AA+='^'
             BB=PDI22.objects.values_list('PDI24E2PD').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             BB=PDI22.objects.values_list('PDI24E2').get(user=i.id)
             AA+=BB[0]
+            ZZ+=BB[0]
             BB=[]
             AA+='^'
             AA+='#'
@@ -18462,6 +18633,10 @@ def yPDI22RH(request):
             AA+='não tem PDI'
             AA+='^'
     AA=AA.split('^')
+    textdata=ZZ
+    wordcloud = WordCloud(background_color='white',stopwords={'para','a','o','e','de','do','da','em','no','na','cosmotec','por','com','br','que','os','as','é','das','dos'})
+    wordcloud.generate(textdata)
+    wordcloud.to_file('./blog/static/pdi24.png')
     del AA[-1]
     params = {"UserID":request.user,"time":AA}
     return render(request, "blog/yPDI22RH.html",context=params)
@@ -21250,3 +21425,144 @@ def yADC22ESTA(request):
         }
     return render(request, "blog/yADC22ESTA.html",context=params)
 
+
+
+def senha(request):
+
+    list = [
+        "adriana.arimitsu@cosmotec.com.br","banana11",
+        "agatha.alencar@cosmotec.com.br","misosiru",
+        "anderson.aparecido@cosmotec.com.br","kajitsunodoame",
+        "Alan.Barcelos@cosmotec.com.br","takoyaki",
+        "aide.batista@cosmotec.com.br","onigiri1",
+        "aline.cunha@cosmotec.com.br","tenpura1",
+        "adriano.fernandes@cosmotec.com.br","oimo1111",
+        "andre.machado@cosmotec.com.br","sashimi1",
+        "alexandra.suriani@cosmotec.com.br","kimuchi1",
+        "andre.viana@cosmotec.com.br","yakitori",
+        "anderson.yamazaki@cosmotec.com.br","sushi111",
+        "camila.araujo@cosmotec.com.br","udon1111",
+        "Celso.Bertolo@cosmotec.com.br","soba1111",
+        "cido@cosmotec.com.br","lamen111",
+        "catherine.perez@cosmotec.com.br","yakiniku",
+        "cynthia.quirino@cosmotec.com.br","karaague",
+        "cristiane.silva@cosmotec.com.br","itamemono",
+        "carolina.tognolo@cosmotec.com.br","yakisoba",
+        "debora.costa@cosmotec.com.br","hikouki1",
+        "daniel.cotrim@cosmotec.com.br","shinkansen",
+        "daniela.oliveira@cosmotec.com.br","densha11",
+        "daniela.rocha@cosmotec.com.br","metro111",
+        "Daiane.Uiehara@cosmotec.com.br","yamanote",
+        "Ernani.Araujo@cosmotec.com.br","mikan111",
+        "elaine.carneiro@cosmotec.com.br","gyoza111",
+        "enzo.luiz@cosmotec.com.br","namatamago",
+        "Eudes.Monteiro@cosmotec.com.br","suika111",
+        "Edivan.Pereira@cosmotec.com.br","gyuniku1",
+        "everton.silva@cosmotec.com.br","budou111",
+        "Edilson.Souza@cosmotec.com.br","butaniku",
+        "felipe.lima@cosmotec.com.br","ninjin11",
+        "fabricio.oliveira@cosmotec.com.br","kabocha1",
+        "fellipe.viana@cosmotec.com.br","retasu11",
+        "guilherme.araujo@cosmotec.com.br","purin111",
+        "giovanna.marques@cosmotec.com.br","ichijiku",
+        "gisley.olivas@cosmotec.com.br","hourenso",
+        "guilherme.silva@cosmotec.com.br","anmitsu1",
+        "guilherme.rodrigues@cosmotec.com.br","ryokucha",
+        "glaucia.lima@cosmotec.com.br","mizuyoukan",
+        "giovanna.trevisan@cosmotec.com.br","kyabetu1",
+        "isabele.tupy@cosmotec.com.br","obanyaki",
+        "jeferson.moraes@cosmotec.com.br","yamazakiya",
+        "jeferson.batista@cosmotec.com.br","imuraya1",
+        "julia.amorim@cosmotec.com.br","butaman1",
+        "jeferson.gomes@cosmotec.com.br","nikuman1",
+        "jose.rildo@cosmotec.com.br","kappaebicen",
+        "julia.santana@cosmotec.com.br","akagai11",
+        "Kelly.Cristina@cosmotec.com.br","misonabe",
+        "kelly.Moraes@cosmotec.com.br","kimuchinabe",
+        "karina.silva@cosmotec.com.br","oden111",
+        "luan.oliverira@cosmotec.com.br","kyabetsutaro",
+        "lucas.mota@cosmotec.com.br","akashiyaqui",
+        "livia.brandeburski@cosmotec.com.br","tonkotsu",
+        "larissa.conceicao@cosmotec.com.br","teppanyaki",
+        "larissa.santos@cosmotec.com.br","mizutaki",
+        "leidiana.silva@cosmotec.com.br","shiitake",
+        "marina.alcantara@cosmotec.com.br","kinoko11",
+        "monica.dias@cosmotec.com.br","tamago11",
+        "maria.luisa@cosmotec.com.br","kakinotane",
+        "Marcos.Martin@cosmotec.com.br","shoyu111",
+        "mariana.mazin@cosmotec.com.br","takenoko",
+        "marli.ramos@cosmotec.com.br","unagui11",
+        "marcelo.silva@cosmotec.com.br","biwako11",
+        "mayara.sales@cosmotec.com.br","gohan111",
+        "mayara.tiberio@cosmotec.com.br","hurikake",
+        "Marcellus.Vinicius@cosmotec.com.br","takaosan",
+        "noelle.pessoa@cosmotec.com.br","misolamen",
+        "niccoly.santos@cosmotec.com.br","ninniku1",
+        "Priscilla.Cardoso@cosmotec.com.br","currylamen",
+        "pamela.santos@cosmotec.com.br","siolamen",
+        "Ricardo.Fernando@cosmotec.com.br","jiroulamen",
+        "rodrigo.amaral@cosmotec.com.br","akarenga",
+        "rodrigo.gagioti@cosmotec.com.br","iekeilamen",
+        "recepcaosp@cosmotec.com.br","unaju111",
+        "raquel.santos@cosmotec.com.br","shoyulamen",
+        "rogerio.santos@cosmotec.com.br","geppei11",
+        "sandra.brito@cosmotec.com.br","ikkousha",
+        "silvania.lopes@cosmotec.com.br","siroikoibito",
+        "samir.monreal@cosmotec.com.br","lamenkazu",
+        "thiago.figueiredo@cosmotec.com.br","tonkatsu",
+        "talita.juliana@cosmotec.com.br","potapotayaqui",
+        "thaynara.martinez@cosmotec.com.br","korokke1",
+        "Tiago.Machado@cosmotec.com.br","aguemono",
+        "thais.santos@cosmotec.com.br","ehoumaki",
+        "thiago.vitor@cosmotec.com.br","shiosenbei",
+        "Tatiana.Yumi@cosmotec.com.br","ohagui11",
+        "vinicius.meireles@cosmotec.com.br","yakiudon",
+        "valeria.santos@cosmotec.com.br","kitcut11",
+        "vanessa.salazar@cosmotec.com.br","kushiague",
+        "wesley.santos@cosmotec.com.br","chanpon1",
+        "Wilbur.Lopes@cosmotec.com.br","kushiyaqui",
+        "Leandro.Soncini@cosmotec.com.br","ringo111",
+        "manutencao@cosmotec.com.br","ichilan1",
+        ]
+
+
+    list2 = [
+        'hyuma17@yahoo.co.jp','fuji',
+        'practicalweb@outlook.com','tera'
+        ]
+
+    time = int(int(len(list2))/2)
+
+    if (request.method == 'POST'):
+
+        for i in range(time):
+            j=i*2
+            k=j+1
+            subject = 'login e senha no sistema RH (MBO, avaliação de competencia, PDI)'
+            message = 'Ola, '
+            message += str(list2[j])
+            message += ' boa tarde'
+            message += '\n'
+            message += '\n'
+            message += 'Cosmotec RH criou um site em nuvem'
+            message += '\n'
+            message += '\n'
+            message += 'Acesse site seguinte e faça seu segundo alinhamento de MBO'
+            message += '\n'
+            message += '\n'
+            message += 'https://cosmotecrh.pythonanywhere.com'
+            message += '\n'
+            message += '\n'
+            message += 'seu login : '
+            message += str(list2[j])
+            message += '\n'
+            message += 'sua senha : '
+            message += str(list2[k])
+            message += '\n'
+            message += '\n'
+            message += 'Alem de MBO, você pode fazer/olhar sua avaliação de competencia e PDI no site'
+            recipient_list = ['hyuma.nozaki@cosmotec.com.br','sistem.rh@cosmotec.com.br','cosmotecrh2022fs@gmail.com']  # 宛先リスト
+            recipient_list.append(list2[j])
+            from_email = 'sistema.rh@cosmotec.com.br'  # 送信
+            send_mail(subject, message, from_email, recipient_list)
+    return render(request, "blog/senha.html")

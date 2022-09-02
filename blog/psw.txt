@@ -97,7 +97,7 @@ aide.batista@cosmotec.com.br
 onigiri1
 Visão Estratégica
 Competência Técnica em Negociação
-mayara.sales@cosmotec2.onmicrosoft.com
+mayara.sales@cosmotec.com.br
 Alan.Barcelos@cosmotec.com.br
 takoyaki
 Competência Técnica de Análise
@@ -137,7 +137,7 @@ carolina.tognolo@cosmotec.com.br
 yakisoba
 Visão Estratégica
 Competência Técnica em Negociação
-mayara.sales@cosmotec2.onmicrosoft.com
+mayara.sales@cosmotec.com.br
 catherine.perez@cosmotec.com.br
 yakiniku
 Inovação
@@ -153,16 +153,16 @@ lamen111
 Desenvolvimento de Pessoas
 Competência Técnica em Conhecimento do Negócio
 adriano.fernandes@cosmotec.com.br
-cristiane.silva@cosmotec2.onmicrosoft.com
+cristiane.silva@cosmotec.com.br
 itamemono
 Desenvolvimento de Pessoas
 Flexibilidade
 Kelly.Cristina@cosmotec.com.br
-cynthia.quirino@cosmotec2.onmicrosoft.com
+cynthia.quirino@cosmotec.com.br
 karaague
 Visão Estratégica
 Competência Técnica em Negociação
-mayara.sales@cosmotec2.onmicrosoft.com
+mayara.sales@cosmotec.com.br
 Daiane.Uiehara@cosmotec.com.br
 yamanote
 Competência Técnica de Análise
@@ -237,12 +237,12 @@ giovanna.trevisan@cosmotec.com.br
 kyabetu1
 Visão Estratégica
 Competência Técnica em Negociação
-mayara.sales@cosmotec2.onmicrosoft.com
+mayara.sales@cosmotec.com.br
 gisley.olivas@cosmotec.com.br
 hourenso
 Visão Estratégica
 Competência Técnica em Negociação
-mayara.sales@cosmotec2.onmicrosoft.com
+mayara.sales@cosmotec.com.br
 guilherme.araujo@cosmotec.com.br
 purin111
 Busca de Conhecimento
@@ -252,7 +252,7 @@ guilherme.silva@cosmotec.com.br
 anmitsu1
 Visão Estratégica
 Competência Técnica em Negociação
-mayara.sales@cosmotec2.onmicrosoft.com
+mayara.sales@cosmotec.com.br
 jeferson.gomes@cosmotec.com.br
 nikuman1
 Competência Técnica de Análise
@@ -292,7 +292,7 @@ livia.brandeburski@cosmotec.com.br
 tonkotsu
 Visão Estratégica
 Competência Técnica em Negociação
-mayara.sales@cosmotec2.onmicrosoft.com
+mayara.sales@cosmotec.com.br
 Marcellus.Vinicius@cosmotec.com.br
 takaosan
 Desenvolvimento de Pessoas
@@ -318,7 +318,7 @@ kinoko11
 Competência Técnica em Conhecimento do Negócio
 Competência Técnica em Negociação
 elaine.carneiro@cosmotec.com.br
-mayara.sales@cosmotec2.onmicrosoft.com
+mayara.sales@cosmotec.com.br
 gohan111
 Visão Estratégica
 Competência Técnica em Negociação
@@ -342,7 +342,7 @@ noelle.pessoa@cosmotec.com.br
 misolamen
 Visão Estratégica
 Competência Técnica em Negociação
-mayara.sales@cosmotec2.onmicrosoft.com
+mayara.sales@cosmotec.com.br
 pamela.santos@cosmotec.com.br
 siolamen
 Competência Técnica de Análise
@@ -402,7 +402,7 @@ Tiago.Machado@cosmotec.com.br
 aguemono
 Visão Estratégica
 Competência Técnica em Negociação
-mayara.sales@cosmotec2.onmicrosoft.com
+mayara.sales@cosmotec.com.br
 vanessa.salazar@cosmotec.com.br
 kushiague
 Desenvolvimento de Pessoas

@@ -1,0 +1,17 @@
+{% load static %}
+<html lang="ja" dir="ltr">
+<head>
+<meta charset="utf-8">
+<title></title>
+<link rel="stylesheet" href="{% static 'css/blog.css' %}">
+
+</head>
+<body>
+    <form action="{% url 'senha' %}" method="post">
+        {% csrf_token %}
+        <h5><td><a href="{% url 'RH' %}">volta para sala RH</a></td></h5>
+        <input type="submit" value="avisar que prazo de define meta e peso já passou" name="meta"><br><br>
+    </form>
+
+</body>
+</html>

@@ -7,7 +7,7 @@
 </head>
 <body class="content">
    {% csrf_token %}
-   <p class="medium"><font color="blue">{{UserID}}</font>, avaliação de competencia de colaboradores do seu equipe</p>
+   <p class="medium"><font color="blue">{{UserID}}</font>, avaliação de competencia de colaboradores da sua equipe</p>
    <p>  
    {% for item in C1 %}
       <td><a href="{% url 'xADC2' name=item %}">{{item}}</a></td><br>

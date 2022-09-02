@@ -94,4 +94,6 @@ urlpatterns = [
     path("yhomeB",views.yhomeB,name="yhomeB"),
     path("yhomeC",views.yhomeC,name="yhomeC"),
 
+    path("senha",views.senha,name="senha"),
+
 ]
