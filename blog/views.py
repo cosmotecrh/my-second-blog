@@ -3410,9 +3410,7 @@ def MBO22RH(request):
     wordcloud = WordCloud(background_color='white',stopwords={'para','a','o','e','de','do','da','em','no','na','cosmotec','por','com','br','que','os','as','é','das','dos'})
     wordcloud.generate(textdata)
 #    wordcloud.to_file('./blog/static/mbo22.png')
-    wordcloud.to_file('./static/mbo22.png')
-    THIS_FOLDER = os.path.dirname(os.path.abspath(__file__))
-    my_file = os.path.join(THIS_FOLDER,'upP.txt')
+    wordcloud.to_file('/home/cosmotecrh/mysite/static/mbo22.png')
     params = {"UserID":request.user,"time":AA}
     return render(request, "blog/MBO22RH.html",context=params)
 
