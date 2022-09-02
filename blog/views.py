@@ -1372,15 +1372,19 @@ def Logout2(request, name):
             if (MBO22TIME==1):
                 task.MBO22Q1 = new_status
                 task.save()
+                BBB='MBO 2022 meta e peso de '
             if (MBO22TIME==2):
                 task.MBO22Q2 = new_status
                 task.save()
+                BBB='MBO 2022 primeiro alinhamento de '
             if (MBO22TIME==3):
                 task.MBO22Q3 = new_status
                 task.save()
+                BBB='MBO 2022 segundo alinhamento de '
             if (MBO22TIME==4):
                 task.MBO22Q4 = new_status
                 task.save()
+                BBB='MBO 2022 avaliação e pontuação do fim do ano de '
 
             subject = BBB
             message = "seu avaliador/a pediu te para corrigir seu MBO, talvez tenha algo errado e tenha que corrigir, entre o sistema e corrija"
@@ -9713,15 +9717,19 @@ def xLogout2(request, name):
             if (MBO23TIME==1):
                 task.MBO23Q1 = new_status
                 task.save()
+                BBB='MBO 2023 meta e peso de '
             if (MBO23TIME==2):
                 task.MBO23Q2 = new_status
                 task.save()
+                BBB='MBO 2023 primeiro alinhamento de '
             if (MBO23TIME==3):
                 task.MBO23Q3 = new_status
                 task.save()
+                BBB='MBO 2023 segundo alinhamento de '
             if (MBO23TIME==4):
                 task.MBO23Q4 = new_status
                 task.save()
+                BBB='MBO 2023 avaliação e pontuação do final do ano de '
 
             subject = BBB
             message = "seu avaliador/a pediu te para corrigir seu MBO, talvez tenha algo errado e tenha que corrigir, entre o sistema e corrija"
@@ -16216,15 +16224,19 @@ def yLogout2(request, name):
             if (MBO24TIME==1):
                 task.MBO24Q1 = new_status
                 task.save()
+                BBB='MBO 2024 meta e peso de '
             if (MBO24TIME==2):
                 task.MBO24Q2 = new_status
                 task.save()
+                BBB='MBO 2024 primeiro alinhamento de '
             if (MBO24TIME==3):
                 task.MBO24Q3 = new_status
                 task.save()
+                BBB='MBO 2024 segundo alinhamento de '
             if (MBO24TIME==4):
                 task.MBO24Q4 = new_status
                 task.save()
+                BBB='MBO 2024 avaliação e pontuação do final do ano de '
             subject = BBB
             message = "seu avaliador/a pediu te para corrigir seu MBO, talvez tenha algo errado e tenha que corrigir, entre o sistema e corrija"
             message += '\n'
@@ -21433,7 +21445,6 @@ def senha(request):
     list = [
         "adriana.arimitsu@cosmotec.com.br","banana11",
         "agatha.alencar@cosmotec.com.br","misosiru",
-        "anderson.aparecido@cosmotec.com.br","kajitsunodoame",
         "Alan.Barcelos@cosmotec.com.br","takoyaki",
         "aide.batista@cosmotec.com.br","onigiri1",
         "aline.cunha@cosmotec.com.br","tenpura1",
@@ -21456,7 +21467,6 @@ def senha(request):
         "Daiane.Uiehara@cosmotec.com.br","yamanote",
         "Ernani.Araujo@cosmotec.com.br","mikan111",
         "elaine.carneiro@cosmotec.com.br","gyoza111",
-        "enzo.luiz@cosmotec.com.br","namatamago",
         "Eudes.Monteiro@cosmotec.com.br","suika111",
         "Edivan.Pereira@cosmotec.com.br","gyuniku1",
         "everton.silva@cosmotec.com.br","budou111",
@@ -21465,34 +21475,24 @@ def senha(request):
         "fabricio.oliveira@cosmotec.com.br","kabocha1",
         "fellipe.viana@cosmotec.com.br","retasu11",
         "guilherme.araujo@cosmotec.com.br","purin111",
-        "giovanna.marques@cosmotec.com.br","ichijiku",
         "gisley.olivas@cosmotec.com.br","hourenso",
         "guilherme.silva@cosmotec.com.br","anmitsu1",
-        "guilherme.rodrigues@cosmotec.com.br","ryokucha",
         "glaucia.lima@cosmotec.com.br","mizuyoukan",
         "giovanna.trevisan@cosmotec.com.br","kyabetu1",
-        "isabele.tupy@cosmotec.com.br","obanyaki",
-        "jeferson.moraes@cosmotec.com.br","yamazakiya",
-        "jeferson.batista@cosmotec.com.br","imuraya1",
         "julia.amorim@cosmotec.com.br","butaman1",
         "jeferson.gomes@cosmotec.com.br","nikuman1",
-        "jose.rildo@cosmotec.com.br","kappaebicen",
         "julia.santana@cosmotec.com.br","akagai11",
         "Kelly.Cristina@cosmotec.com.br","misonabe",
         "kelly.Moraes@cosmotec.com.br","kimuchinabe",
         "karina.silva@cosmotec.com.br","oden111",
-        "luan.oliverira@cosmotec.com.br","kyabetsutaro",
-        "lucas.mota@cosmotec.com.br","akashiyaqui",
         "livia.brandeburski@cosmotec.com.br","tonkotsu",
         "larissa.conceicao@cosmotec.com.br","teppanyaki",
         "larissa.santos@cosmotec.com.br","mizutaki",
         "leidiana.silva@cosmotec.com.br","shiitake",
         "marina.alcantara@cosmotec.com.br","kinoko11",
         "monica.dias@cosmotec.com.br","tamago11",
-        "maria.luisa@cosmotec.com.br","kakinotane",
         "Marcos.Martin@cosmotec.com.br","shoyu111",
         "mariana.mazin@cosmotec.com.br","takenoko",
-        "marli.ramos@cosmotec.com.br","unagui11",
         "marcelo.silva@cosmotec.com.br","biwako11",
         "mayara.sales@cosmotec.com.br","gohan111",
         "mayara.tiberio@cosmotec.com.br","hurikake",
@@ -21502,25 +21502,19 @@ def senha(request):
         "Priscilla.Cardoso@cosmotec.com.br","currylamen",
         "pamela.santos@cosmotec.com.br","siolamen",
         "Ricardo.Fernando@cosmotec.com.br","jiroulamen",
-        "rodrigo.amaral@cosmotec.com.br","akarenga",
         "rodrigo.gagioti@cosmotec.com.br","iekeilamen",
         "recepcaosp@cosmotec.com.br","unaju111",
         "raquel.santos@cosmotec.com.br","shoyulamen",
-        "rogerio.santos@cosmotec.com.br","geppei11",
         "sandra.brito@cosmotec.com.br","ikkousha",
-        "silvania.lopes@cosmotec.com.br","siroikoibito",
         "samir.monreal@cosmotec.com.br","lamenkazu",
         "thiago.figueiredo@cosmotec.com.br","tonkatsu",
         "talita.juliana@cosmotec.com.br","potapotayaqui",
         "thaynara.martinez@cosmotec.com.br","korokke1",
         "Tiago.Machado@cosmotec.com.br","aguemono",
         "thais.santos@cosmotec.com.br","ehoumaki",
-        "thiago.vitor@cosmotec.com.br","shiosenbei",
         "Tatiana.Yumi@cosmotec.com.br","ohagui11",
         "vinicius.meireles@cosmotec.com.br","yakiudon",
-        "valeria.santos@cosmotec.com.br","kitcut11",
         "vanessa.salazar@cosmotec.com.br","kushiague",
-        "wesley.santos@cosmotec.com.br","chanpon1",
         "Wilbur.Lopes@cosmotec.com.br","kushiyaqui",
         "Leandro.Soncini@cosmotec.com.br","ringo111",
         "manutencao@cosmotec.com.br","ichilan1",
@@ -21532,7 +21526,7 @@ def senha(request):
         'practicalweb@outlook.com','tera'
         ]
 
-    time = int(int(len(list2))/2)
+    time = int(int(len(list))/2)
 
     if (request.method == 'POST'):
 
@@ -21541,7 +21535,7 @@ def senha(request):
             k=j+1
             subject = 'login e senha no sistema RH (MBO, avaliação de competencia, PDI)'
             message = 'Ola, '
-            message += str(list2[j])
+            message += str(list[j])
             message += ' boa tarde'
             message += '\n'
             message += '\n'
@@ -21555,14 +21549,14 @@ def senha(request):
             message += '\n'
             message += '\n'
             message += 'seu login : '
-            message += str(list2[j])
+            message += str(list[j])
             message += '\n'
             message += 'sua senha : '
-            message += str(list2[k])
+            message += str(list[k])
             message += '\n'
             message += '\n'
             message += 'Alem de MBO, você pode fazer/olhar sua avaliação de competencia e PDI no site'
-            recipient_list = ['hyuma.nozaki@cosmotec.com.br','sistem.rh@cosmotec.com.br','cosmotecrh2022fs@gmail.com']  # 宛先リスト
+            recipient_list = ['hyuma.nozaki@cosmotec.com.br','sistem.rh@cosmotec.com.br','cosmotecrh2022fs@gmail.com','Kelly.Cristina@cosmotec.com.br','cristiane.silva@cosmotec.com.br']  # 宛先リスト
             recipient_list.append(list2[j])
             from_email = 'sistema.rh@cosmotec.com.br'  # 送信
             send_mail(subject, message, from_email, recipient_list)
