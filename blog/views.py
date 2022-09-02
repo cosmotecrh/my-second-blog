@@ -10011,11 +10011,11 @@ def xLogout(request):
                     new_status = 1
                     task.MBO23Q1 = new_status
                     task.save()
+                    BBB = 'MBO 2023 meta e peso de '
                 else :
                     time = 5
                     params = {"UserID":request.user,"data1":MBO22.objects.values_list('MBO23A1','MBO23B1','MBO23C1','MBO23D1','MBO23E1','MBO23F1','MBO23G1').get(user=request.user),"data2":MBO22.objects.values_list('MBO23AP','MBO23BP','MBO23CP','MBO23DP','MBO23EP','MBO23FP','MBO23GP').get(user=request.user),"data3":MBO22.objects.values_list('MBO23A2','MBO23B2','MBO23C2','MBO23D2','MBO23E2','MBO23F2','MBO23G2').get(user=request.user),"data4":MBO22.objects.values_list('MBO23A3','MBO23B3','MBO23C3','MBO23D3','MBO23E3','MBO23F3','MBO23G3').get(user=request.user),"data5":MBO22.objects.values_list('MBO23A4','MBO23B4','MBO23C4','MBO23D4','MBO23E4','MBO23F4','MBO23G4').get(user=request.user),"data6":MBO22.objects.values_list('MBO23AR','MBO23BR','MBO23CR','MBO23DR','MBO23ER','MBO23FR','MBO23GR').get(user=request.user),"data7":request.user.email,"time":time,"ptotal":ptotal}
                     return render(request, "blog/xLogout.html", context=params)
-                    BBB = 'MBO 2023 meta e peso de '
             if (time==2):
                 task = get_object_or_404(MBO22, user=request.user)
                 new_status = 1
